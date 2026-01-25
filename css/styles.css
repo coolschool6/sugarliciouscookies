@@ -314,9 +314,9 @@ body{
 
 /* Lightbox */
 .lightbox[aria-hidden="true"]{display:none}
-.lightbox{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;animation:fadeIn 0.3s ease}
-.lightbox-overlay{position:absolute;inset:0;background:rgba(23,22,28,.6);animation:fadeIn 0.3s ease}
-.lightbox-content{position:relative;background:var(--white);border-radius:20px;box-shadow:var(--shadow-lg);width:min(720px,92vw);max-height:90vh;display:grid;grid-template-rows:auto 1fr auto;animation:zoomIn 0.3s ease}
+.lightbox{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;animation:fadeIn 0.3s ease}
+.lightbox-overlay{position:absolute;inset:0;background:rgba(23,22,28,.75);animation:fadeIn 0.3s ease}
+.lightbox-content{position:relative;background:var(--white);border-radius:20px;box-shadow:var(--shadow-lg);width:min(720px,92vw);max-height:90vh;display:flex;flex-direction:column;animation:zoomIn 0.3s ease;overflow:hidden}
 
 @keyframes fadeIn{
   from{opacity:0}
@@ -327,33 +327,68 @@ body{
   from{opacity:0;transform:scale(0.9)}
   to{opacity:1;transform:scale(1)}
 }
-.lightbox-close{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;border:1px solid #e6e6ea;background:#fff;color:#333;cursor:pointer;font-size:24px;line-height:1;transition:all 0.3s ease;-webkit-tap-highlight-color:transparent}
+.lightbox-close{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;border:1px solid #e6e6ea;background:#fff;color:#333;cursor:pointer;font-size:24px;line-height:1;transition:all 0.3s ease;-webkit-tap-highlight-color:transparent;z-index:10}
 .lightbox-close:hover{transform:rotate(90deg);background:var(--pink-100);border-color:var(--pink-300)}
 
-/* Mobile lightbox close button */
-@media (max-width:480px){
-  .lightbox-close{width:48px;height:48px;font-size:26px;top:8px;right:8px}
-}
-.lightbox-media{padding:18px}
+.lightbox-media{padding:18px;display:flex;align-items:center;justify-content:center;flex:1;overflow:hidden}
 .lightbox-media .ph{width:100%;aspect-ratio:16/10;border-radius:14px}
-.lightbox-media img{width:100%;height:auto;display:block;border-radius:14px;touch-action:pinch-zoom;user-select:none}
+.lightbox-media img{width:100%;height:auto;max-height:70vh;display:block;border-radius:14px;touch-action:pinch-zoom;user-select:none;object-fit:contain}
 
-/* Mobile lightbox media optimizations */
-@media (max-width:480px){
-  .lightbox-media{padding:12px;padding-top:56px}
-  .lightbox-media img{border-radius:10px;max-height:60vh;object-fit:contain}
-}
-.lightbox-info{display:flex;align-items:baseline;justify-content:space-between;padding:0 18px 18px;flex-wrap:wrap;gap:8px}
+.lightbox-info{display:flex;align-items:baseline;justify-content:space-between;padding:0 18px 18px;flex-wrap:wrap;gap:8px;flex-shrink:0}
 .lightbox-name{font-weight:700}
 .lightbox-price{color:#a03a67;font-weight:700}
 .lightbox-note{color:var(--text-500);font-size:.95rem;width:100%;margin-top:4px}
 
-/* Mobile lightbox info */
+/* Mobile lightbox - full screen */
 @media (max-width:768px){
-  .lightbox-info{padding:0 12px 16px}
-  .lightbox-name{font-size:1rem}
-  .lightbox-price{font-size:1.1rem}
-  .lightbox-note{font-size:.88rem}
+  .lightbox{padding:0}
+  .lightbox-content{
+    width:100vw;
+    height:100vh;
+    height:100dvh;
+    max-height:100dvh;
+    border-radius:0;
+    margin:0;
+  }
+  .lightbox-close{
+    width:50px;
+    height:50px;
+    font-size:28px;
+    top:max(12px, env(safe-area-inset-top, 12px));
+    right:12px;
+    background:rgba(255,255,255,0.95);
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  }
+  .lightbox-media{
+    padding:70px 12px 12px 12px;
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .lightbox-media img{
+    width:100%;
+    height:auto;
+    max-height:calc(100dvh - 180px);
+    object-fit:contain;
+    border-radius:12px;
+  }
+  .lightbox-info{
+    padding:12px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    background:var(--white);
+  }
+  .lightbox-name{font-size:1.1rem}
+  .lightbox-price{font-size:1.2rem}
+  .lightbox-note{font-size:.9rem}
+  .lightbox-nav{
+    width:44px;
+    height:44px;
+    font-size:22px;
+    background:rgba(255,255,255,0.95);
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  }
+  .lightbox-prev{left:12px}
+  .lightbox-next{right:12px}
 }
 
 /* Footer inside viewport */
