@@ -79,6 +79,16 @@ body{
 
 /* Mobile device frame - full screen fit to phone */
 @media (max-width:768px){
+  body{
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,105,135,0.3) 0%, transparent 40%),
+      radial-gradient(circle at 80% 10%, rgba(255,182,203,0.4) 0%, transparent 35%),
+      radial-gradient(circle at 10% 80%, rgba(255,110,161,0.25) 0%, transparent 40%),
+      radial-gradient(circle at 90% 90%, rgba(230,57,70,0.2) 0%, transparent 35%),
+      radial-gradient(circle at 50% 50%, rgba(255,208,223,0.3) 0%, transparent 50%),
+      linear-gradient(135deg, #fff0f5 0%, #ffe4ec 25%, #ffd6e7 50%, #ffcce0 75%, #fff0f5 100%);
+    background-attachment:fixed;
+  }
   .device-frame{
     width:100vw;
     max-width:100vw;
@@ -89,7 +99,7 @@ body{
     border-radius:0;
     border:none;
     box-shadow:none;
-    background:linear-gradient(180deg,var(--white),var(--pink-25));
+    background:transparent;
   }
   .device-topbar{display:none}
   .viewport{
@@ -100,6 +110,15 @@ body{
     max-height:none;
     border-radius:0;
     padding:calc(18px + env(safe-area-inset-top, 0px)) 16px calc(40px + env(safe-area-inset-bottom, 0px));
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,240,245,0.9) 50%, rgba(255,228,236,0.85) 100%);
+  }
+  
+  /* More floating hearts on mobile */
+  .floating-heart{
+    font-size:1.8rem;
+    opacity:0.7;
+    filter:drop-shadow(0 2px 8px rgba(255,110,161,0.4));
   }
 }
 
