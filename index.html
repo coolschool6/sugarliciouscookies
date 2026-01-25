@@ -619,8 +619,9 @@
 					}
 					
 					const message = generateWhatsAppMessage();
-					// Use direct WhatsApp API with phone number extracted from original link
-					const whatsappUrl = `https://wa.me/message/XOR7VGU5N2CEO1?text=${message}`;
+					// Send directly to Sugarlicious Cookies WhatsApp with pre-filled order message
+					const phoneNumber = '18683354131'; // Trinidad & Tobago: +1868-335-4131
+					const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
 					window.open(whatsappUrl, '_blank');
 				};
 				
