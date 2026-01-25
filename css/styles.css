@@ -64,23 +64,32 @@ body{
   z-index:10;
 }
 
-/* Mobile device frame - full width */
-@media (max-width:480px){
+/* Mobile device frame - full screen fit to phone */
+@media (max-width:768px){
   .device-frame{
-    width:100%;
-    max-width:100%;
+    width:100vw;
+    max-width:100vw;
+    min-height:100vh;
+    min-height:100dvh;
     margin:0;
+    padding:0;
     border-radius:0;
-    border-left:none;
-    border-right:none;
+    border:none;
     box-shadow:none;
+    background:linear-gradient(180deg,var(--white),var(--pink-25));
   }
   .device-topbar{display:none}
   .viewport{
-    height:100vh;
-    height:100dvh;
+    width:100%;
+    height:auto;
+    min-height:100vh;
+    min-height:100dvh;
+    max-height:none;
     border-radius:0;
-    padding:20px 12px calc(30px + env(safe-area-inset-bottom, 0px));
+    padding:env(safe-area-inset-top, 20px) 16px calc(40px + env(safe-area-inset-bottom, 0px));
+    padding-top:max(20px, env(safe-area-inset-top, 20px));
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
   }
 }
 .device-topbar{height:32px;display:flex;gap:6px;align-items:center;padding:0 12px}
@@ -103,9 +112,9 @@ body{
 .header{display:grid;justify-items:center;text-align:center;margin:0 0 24px 0;animation:fadeSlideDown 0.8s ease;padding:20px 12px 12px 12px;overflow:visible}
 
 /* Mobile header adjustments */
-@media (max-width:480px){
-  .header{margin:0 0 20px 0;padding:16px 8px 12px 8px}
-  .brand-title{font-size:clamp(1.8rem,7vw,2.2rem);padding-top:0.2em}
+@media (max-width:768px){
+  .header{margin:0 0 20px 0;padding:16px 12px 12px 12px}
+  .brand-title{font-size:clamp(1.8rem,7vw,2.4rem);padding-top:0.2em}
   .tagline{font-size:0.9rem}
   .order-banner{max-width:100%;padding:10px 14px;margin-top:16px}
   .order-banner p{font-size:0.88rem;margin-bottom:8px}
@@ -340,7 +349,7 @@ body{
 .lightbox-note{color:var(--text-500);font-size:.95rem;width:100%;margin-top:4px}
 
 /* Mobile lightbox info */
-@media (max-width:480px){
+@media (max-width:768px){
   .lightbox-info{padding:0 12px 16px}
   .lightbox-name{font-size:1rem}
   .lightbox-price{font-size:1.1rem}
@@ -354,7 +363,7 @@ body{
 ::selection{background:var(--pink-300);color:#fff}
 .product-card:active{transform:translateY(1px)}
 
-@media (max-width: 480px){
+@media (max-width:768px){
   .product-info{padding:0.9rem 1rem}
   .product-name{font-size:1rem}
   .product-price{font-size:1.1rem}
@@ -381,7 +390,7 @@ body{
   
   /* Ensure images display properly */
   .product-img{border-radius:16px 16px 0 0;overflow:hidden}
-  .product-img img{border-radius:0}
+  .product-img img{border-radius:0;width:100%;height:auto}
   
   /* Social buttons mobile */
   .social-btn{padding:.55rem .85rem;font-size:0.85rem}
@@ -392,7 +401,7 @@ body{
 }
 
 /* Reduced motion preference overrides (mobile) */
-@media (max-width:480px) and (prefers-reduced-motion: reduce){
+@media (max-width:768px) and (prefers-reduced-motion: reduce){
   .mobile-animate, .mobile-animate.in-view{opacity:1;transform:none;transition:none}
 }
 
