@@ -64,6 +64,19 @@ body{
   z-index:10;
 }
 
+.device-topbar{height:32px;display:flex;gap:6px;align-items:center;padding:0 12px}
+.device-topbar .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(180deg,#ffd2e3,#ffadc7);box-shadow:0 1px 0 #ffffffa8 inset}
+
+.viewport{
+  height:min(760px, calc(100vh - 140px));
+  overflow-y:auto;
+  scroll-behavior:smooth;
+  padding:calc(18px + env(safe-area-inset-top, 0px)) 16px calc(22px + env(safe-area-inset-bottom, 0px));
+  border-radius:0 0 var(--radius) var(--radius);
+  background:linear-gradient(180deg,var(--white),var(--pink-25));
+  -webkit-overflow-scrolling:touch;
+}
+
 /* Mobile device frame - full screen fit to phone */
 @media (max-width:768px){
   .device-frame{
@@ -86,21 +99,8 @@ body{
     min-height:100dvh;
     max-height:none;
     border-radius:0;
-    padding:env(safe-area-inset-top, 20px) 16px calc(40px + env(safe-area-inset-bottom, 0px));
-    padding-top:max(20px, env(safe-area-inset-top, 20px));
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
+    padding:calc(18px + env(safe-area-inset-top, 0px)) 16px calc(40px + env(safe-area-inset-bottom, 0px));
   }
-}
-.device-topbar{height:32px;display:flex;gap:6px;align-items:center;padding:0 12px}
-.device-topbar .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(180deg,#ffd2e3,#ffadc7);box-shadow:0 1px 0 #ffffffa8 inset}
-.viewport{
-  height:min(760px, calc(100vh - 140px));
-  overflow-y:auto;
-  scroll-behavior:smooth;
-  padding:calc(100px + env(safe-area-inset-top, 0px)) 16px calc(22px + env(safe-area-inset-bottom, 0px));
-  border-radius:0 0 var(--radius) var(--radius);
-  background:linear-gradient(180deg,var(--white),var(--pink-25));
 }
 
 /* Visible custom scrollbar */
