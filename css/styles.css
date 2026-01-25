@@ -120,7 +120,7 @@ body{
   .order-banner p{font-size:0.88rem;margin-bottom:8px}
 }
 .brand-mark{display:grid;place-items:center}
-.brand-mark img{width:auto;max-width:90%;height:auto;display:block;margin:12px auto 18px;object-fit:contain;image-rendering:auto;animation:pulse 2s ease-in-out infinite}
+.brand-mark img{width:auto;max-width:200px;height:auto;max-height:120px;display:block;margin:12px auto 18px;object-fit:contain;image-rendering:auto;border-radius:12px;animation:pulse 2s ease-in-out infinite}
 
 /* Brand heart emoji for placeholder */
 .brand-heart{font-size:4rem;display:block;margin:12px auto 18px;animation:heartbeat 1.5s ease-in-out infinite}
