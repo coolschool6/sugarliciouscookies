@@ -81,12 +81,12 @@ body{
 @media (max-width:768px){
   body{
     background:
-      radial-gradient(circle at 20% 20%, rgba(255,105,135,0.3) 0%, transparent 40%),
-      radial-gradient(circle at 80% 10%, rgba(255,182,203,0.4) 0%, transparent 35%),
-      radial-gradient(circle at 10% 80%, rgba(255,110,161,0.25) 0%, transparent 40%),
-      radial-gradient(circle at 90% 90%, rgba(230,57,70,0.2) 0%, transparent 35%),
-      radial-gradient(circle at 50% 50%, rgba(255,208,223,0.3) 0%, transparent 50%),
-      linear-gradient(135deg, #fff0f5 0%, #ffe4ec 25%, #ffd6e7 50%, #ffcce0 75%, #fff0f5 100%);
+      radial-gradient(circle at 15% 15%, rgba(255,105,135,0.5) 0%, transparent 35%),
+      radial-gradient(circle at 85% 10%, rgba(255,140,170,0.5) 0%, transparent 30%),
+      radial-gradient(circle at 10% 85%, rgba(255,110,161,0.4) 0%, transparent 35%),
+      radial-gradient(circle at 90% 85%, rgba(230,57,70,0.35) 0%, transparent 30%),
+      radial-gradient(circle at 50% 50%, rgba(255,182,203,0.4) 0%, transparent 45%),
+      linear-gradient(135deg, #ffe8f0 0%, #ffd6e7 20%, #ffb6cd 50%, #ffd6e7 80%, #ffe8f0 100%);
     background-attachment:fixed;
   }
   .device-frame{
@@ -99,7 +99,7 @@ body{
     border-radius:0;
     border:none;
     box-shadow:none;
-    background:transparent;
+    background:transparent !important;
   }
   .device-topbar{display:none}
   .viewport{
@@ -110,8 +110,7 @@ body{
     max-height:none;
     border-radius:0;
     padding:calc(18px + env(safe-area-inset-top, 0px)) 16px calc(40px + env(safe-area-inset-bottom, 0px));
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,240,245,0.9) 50%, rgba(255,228,236,0.85) 100%);
+    background:transparent !important;
   }
   
   /* More floating hearts on mobile */
