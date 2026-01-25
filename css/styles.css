@@ -63,6 +63,26 @@ body{
   position:relative;
   z-index:10;
 }
+
+/* Mobile device frame - full width */
+@media (max-width:480px){
+  .device-frame{
+    width:100%;
+    max-width:100%;
+    margin:0;
+    border-radius:0;
+    border-left:none;
+    border-right:none;
+    box-shadow:none;
+  }
+  .device-topbar{display:none}
+  .viewport{
+    height:100vh;
+    height:100dvh;
+    border-radius:0;
+    padding:20px 12px calc(30px + env(safe-area-inset-bottom, 0px));
+  }
+}
 .device-topbar{height:32px;display:flex;gap:6px;align-items:center;padding:0 12px}
 .device-topbar .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(180deg,#ffd2e3,#ffadc7);box-shadow:0 1px 0 #ffffffa8 inset}
 .viewport{
@@ -80,7 +100,16 @@ body{
 .viewport::-webkit-scrollbar-thumb{background:#e9b8c8;border-radius:999px;border:2px solid #f2f3f4}
 .viewport{scrollbar-color:#e9b8c8 #f2f3f4;scrollbar-width:thin}
 
-.header{display:grid;justify-items:center;text-align:center;margin:0 0 32px 0;animation:fadeSlideDown 0.8s ease;padding:20px 0 12px 0;overflow:visible}
+.header{display:grid;justify-items:center;text-align:center;margin:0 0 24px 0;animation:fadeSlideDown 0.8s ease;padding:20px 12px 12px 12px;overflow:visible}
+
+/* Mobile header adjustments */
+@media (max-width:480px){
+  .header{margin:0 0 20px 0;padding:16px 8px 12px 8px}
+  .brand-title{font-size:clamp(1.8rem,7vw,2.2rem);padding-top:0.2em}
+  .tagline{font-size:0.9rem}
+  .order-banner{max-width:100%;padding:10px 14px;margin-top:16px}
+  .order-banner p{font-size:0.88rem;margin-bottom:8px}
+}
 .brand-mark{display:grid;place-items:center}
 .brand-mark img{width:auto;max-width:90%;height:auto;display:block;margin:12px auto 18px;object-fit:contain;image-rendering:auto;animation:pulse 2s ease-in-out infinite}
 
@@ -326,24 +355,40 @@ body{
 .product-card:active{transform:translateY(1px)}
 
 @media (max-width: 480px){
-  .product-info{padding:1rem 1.1rem}
-  .product-name{font-size:1.15rem}
-  .product-price{font-size:1.05rem}
+  .product-info{padding:0.9rem 1rem}
+  .product-name{font-size:1rem}
+  .product-price{font-size:1.1rem}
+  
+  /* Full width product cards */
+  .products{gap:16px;padding-bottom:30px}
+  .product-card{border-radius:16px}
   
   /* Stack side-by-side products on mobile */
-  .product-row{grid-template-columns:1fr;gap:20px}
-  /* Disable original keyframe animations on mobile; use JS-driven reveal */
-  .product-card, .product-row{animation:none}
+  .product-row{grid-template-columns:1fr;gap:16px}
+  /* Show cards immediately on mobile */
+  .product-card, .product-row{animation:none;opacity:1}
   /* Mobile reveal animation states */
   .mobile-animate{opacity:0;transform:translateY(18px) scale(.985);will-change:transform,opacity}
   .mobile-animate.in-view{opacity:1;transform:translateY(0) scale(1);transition:opacity .6s cubic-bezier(.25,.6,.3,1),transform .6s cubic-bezier(.25,.6,.3,1)}
   
   /* Disable tilt on mobile */
   .product-card.tilt-enabled{transform-style:flat !important;perspective:none !important}
-  .product-card:hover{transform:translateY(-2px) !important;box-shadow:var(--shadow-hover)}
+  .product-card:hover{transform:none !important;box-shadow:var(--shadow)}
+  .product-card:active{transform:scale(0.98) !important;box-shadow:var(--shadow)}
   
   /* Better touch targets */
-  .product-trigger{-webkit-tap-highlight-color:transparent}
+  .product-trigger{-webkit-tap-highlight-color:transparent;min-height:44px}
+  
+  /* Ensure images display properly */
+  .product-img{border-radius:16px 16px 0 0;overflow:hidden}
+  .product-img img{border-radius:0}
+  
+  /* Social buttons mobile */
+  .social-btn{padding:.55rem .85rem;font-size:0.85rem}
+  .social-links{gap:6px}
+  
+  /* Reduce floating hearts on mobile for performance */
+  .floating-heart{font-size:1.5rem}
 }
 
 /* Reduced motion preference overrides (mobile) */
