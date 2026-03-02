@@ -116,7 +116,7 @@
 							<div class="product-price">$200 (10 packs)</div>
 						</div>
 					</button>
-					<button class="add-to-cart-btn" data-name="5." data-price="$200" aria-label="Add product 5 to cart">🛒 Add to Cart</button>
+					<button class="add-to-cart-btn" data-name="5." data-price="$200" data-display-price="$200 (10 packs)" aria-label="Add product 5 to cart">🛒 Add to Cart</button>
 				</article>
 			</section>
 			
@@ -517,7 +517,7 @@
 								<div class="cart-item" data-index="${index}">
 									<div class="cart-item-info">
 										<span class="cart-item-name">${item.name}</span>
-										<span class="cart-item-price">${item.price} each</span>
+										<span class="cart-item-price">${item.displayPrice || `${item.price} each`}</span>
 										<span class="cart-item-subtotal">Subtotal: $${itemTotal.toFixed(2)}</span>
 									</div>
 									<div class="cart-item-controls">
@@ -533,12 +533,13 @@
 					}
 				};
 				
-				const addToCart = (name, price) => {
+				const addToCart = (name, price, displayPrice) => {
 					const existingItem = cart.find(item => item.name === name);
 					if (existingItem) {
 						existingItem.quantity += 1;
+						if (displayPrice) existingItem.displayPrice = displayPrice;
 					} else {
-						cart.push({ name, price, quantity: 1 });
+						cart.push({ name, price, displayPrice, quantity: 1 });
 					}
 					saveCart();
 					
@@ -597,7 +598,7 @@
 						const itemTotal = itemPrice * item.quantity;
 						
 						message += `*${index + 1}. ${item.name}*\n`;
-						message += `   • Price: ${item.price}\n`;
+						message += `   • Price: ${item.displayPrice || item.price}\n`;
 						message += `   • Qty: ${item.quantity}\n`;
 						message += `   • Subtotal: $${itemTotal.toFixed(2)}\n\n`;
 					});
@@ -633,7 +634,8 @@
 						e.stopPropagation();
 						const name = addBtn.getAttribute('data-name');
 						const price = addBtn.getAttribute('data-price');
-						addToCart(name, price);
+						const displayPrice = addBtn.getAttribute('data-display-price');
+						addToCart(name, price, displayPrice);
 						return;
 					}
 					
