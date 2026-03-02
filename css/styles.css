@@ -1,12 +1,12 @@
 :root{
-  --pink-25:#f6fcf8;
-  --pink-50:#ecf8f0;
-  --pink-100:#d6f1e0;
-  --pink-200:#bfeff0;
-  --pink-300:#93dde0;
-  --pink-500:#63cfd4;
-  --red-500:#b38a2f;
-  --red-400:#d4af37;
+  --pink-25:#f2fffe;
+  --pink-50:#e8fbfb;
+  --pink-100:#d4f6f7;
+  --pink-200:#b8ecef;
+  --pink-300:#8edfe2;
+  --pink-500:#40e0d0;
+  --red-500:#2bb8bf;
+  --red-400:#40e0d0;
   --text-900:#333333;
   --text-700:#555555;
   --text-500:#888888;
@@ -84,8 +84,8 @@ body{
       radial-gradient(circle at 15% 15%, rgba(99,207,212,0.42) 0%, transparent 35%),
       radial-gradient(circle at 85% 10%, rgba(147,221,224,0.45) 0%, transparent 30%),
       radial-gradient(circle at 10% 85%, rgba(72,183,188,0.35) 0%, transparent 35%),
-      radial-gradient(circle at 90% 85%, rgba(212,175,55,0.25) 0%, transparent 30%),
-      radial-gradient(circle at 50% 50%, rgba(180,227,199,0.35) 0%, transparent 45%),
+      radial-gradient(circle at 90% 85%, rgba(64,224,208,0.25) 0%, transparent 30%),
+      radial-gradient(circle at 50% 50%, rgba(184,236,239,0.35) 0%, transparent 45%),
       linear-gradient(135deg, #f4fcfc 0%, #e6f7f8 20%, #bfeff0 50%, #e6f7f8 80%, #f4fcfc 100%);
     background-attachment:fixed;
   }
@@ -167,7 +167,7 @@ body{
   100%{transform:translate(var(--tx, 0), var(--ty, 100vh)) rotate(720deg);opacity:0}
 }
 
-.brand-title{font-family:"Great Vibes",cursive;font-size:clamp(2rem,8vw,2.6rem);line-height:1.4;margin:0;padding-top:0.3em;background:linear-gradient(45deg,#48b7bc,#63cfd4,#d4af37,#48b7bc);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 6s ease infinite}
+.brand-title{font-family:"Great Vibes",cursive;font-size:clamp(2rem,8vw,2.6rem);line-height:1.4;margin:0;padding-top:0.3em;background:linear-gradient(45deg,#22cfc0,#40e0d0,#8edfe2,#22cfc0);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 6s ease infinite}
 .tagline{margin:.25rem 0 0;color:var(--text-700);font-size:0.95rem}
 
 .order-banner{margin:20px auto 0;padding:12px 20px;background:linear-gradient(135deg,var(--pink-100),var(--pink-50));border:1px solid var(--pink-200);border-radius:12px;max-width:90%;animation:fadeIn 1s ease 0.5s backwards}
@@ -291,6 +291,7 @@ body{
 .product-img{width:100%;position:relative;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .product-img img{width:100%;height:auto;display:block;object-fit:contain;image-rendering:auto}
 .product-info{display:flex;align-items:baseline;justify-content:space-between;padding:1.1rem 1.2rem;gap:8px;flex-wrap:wrap}
+.product-info.price-only{justify-content:flex-start;padding:.75rem 1.2rem .95rem}
 .product-info-stacked{flex-direction:column;align-items:flex-start;gap:6px}
 .product-info-stacked .product-price{font-size:1.2rem}
 .product-info-stacked .product-note{margin-left:0}
@@ -354,7 +355,7 @@ body{
 
 .lightbox-info{display:flex;align-items:baseline;justify-content:space-between;padding:0 18px 18px;flex-wrap:wrap;gap:8px;flex-shrink:0}
 .lightbox-name{font-weight:700}
-.lightbox-price{color:#279da3;font-weight:700}
+.lightbox-price{color:#1faab0;font-weight:700}
 .lightbox-note{color:var(--text-500);font-size:.95rem;width:100%;margin-top:4px}
 
 /* Mobile lightbox - full screen */
@@ -506,9 +507,9 @@ body{
   width:60px;
   height:60px;
   border-radius:50%;
-  background:linear-gradient(135deg, var(--pink-500), #e63946);
+  background:linear-gradient(135deg, var(--pink-500), #2bb8bf);
   border:none;
-  box-shadow:0 4px 20px rgba(255,110,161,0.4);
+  box-shadow:0 4px 20px rgba(64,224,208,0.4);
   cursor:pointer;
   font-size:1.8rem;
   display:flex;
@@ -519,7 +520,7 @@ body{
 }
 .floating-cart-btn:hover{
   transform:scale(1.1);
-  box-shadow:0 6px 30px rgba(255,110,161,0.5);
+  box-shadow:0 6px 30px rgba(64,224,208,0.5);
 }
 .floating-cart-btn.bounce{
   animation:cartBounce 0.5s ease;
@@ -532,8 +533,8 @@ body{
   50%{transform:scale(1.3)}
 }
 @keyframes cartPulse{
-  0%, 100%{box-shadow:0 4px 20px rgba(255,110,161,0.4)}
-  50%{box-shadow:0 4px 30px rgba(255,110,161,0.7)}
+  0%, 100%{box-shadow:0 4px 20px rgba(64,224,208,0.4)}
+  50%{box-shadow:0 4px 30px rgba(64,224,208,0.7)}
 }
 
 /* Cart Count Badge */
@@ -543,7 +544,7 @@ body{
   right:-5px;
   min-width:24px;
   height:24px;
-  background:#e63946;
+  background:#2bb8bf;
   color:#fff;
   border-radius:50%;
   font-size:0.8rem;
