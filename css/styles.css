@@ -2,9 +2,9 @@
   --pink-25:#f6fcf8;
   --pink-50:#ecf8f0;
   --pink-100:#d6f1e0;
-  --pink-200:#b4e3c7;
-  --pink-300:#7fcca2;
-  --pink-500:#1f9d63;
+  --pink-200:#bfeff0;
+  --pink-300:#93dde0;
+  --pink-500:#63cfd4;
   --red-500:#b38a2f;
   --red-400:#d4af37;
   --text-900:#333333;
@@ -13,9 +13,9 @@
   --offwhite:#f9fafb;
   --white:#ffffff;
   --card-bg:#ffffff;
-  --card-border:rgba(31,157,99,.28);
+  --card-border:rgba(99,207,212,.28);
   --brand-pink:var(--pink-500);
-  --shadow-lg:0 30px 60px rgba(31,157,99,.18), 0 10px 20px rgba(31,30,36,.08);
+  --shadow-lg:0 30px 60px rgba(99,207,212,.18), 0 10px 20px rgba(31,30,36,.08);
   --shadow:0 2px 8px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.06);
   --shadow-hover:0 6px 14px rgba(0,0,0,.12), 0 3px 6px rgba(0,0,0,.08);
   --radius:24px;
@@ -50,7 +50,7 @@ body{
 /* Floating Eid symbols container */
 .floating-symbols{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
 
-.floating-symbol{position:fixed;font-size:2rem;animation:symbolFloat linear infinite;pointer-events:none;z-index:2;text-shadow:0 2px 10px rgba(31,157,99,0.3)}
+.floating-symbol{position:fixed;font-size:2rem;animation:symbolFloat linear infinite;pointer-events:none;z-index:2;text-shadow:0 2px 10px rgba(99,207,212,0.3)}
 
 .device-frame{
   width:min(480px,92vw);
@@ -59,13 +59,13 @@ body{
   background:var(--offwhite);
   border-radius:calc(var(--radius) + 10px);
   box-shadow:var(--shadow-lg);
-  border:1px solid rgba(31,157,99,.3);
+  border:1px solid rgba(99,207,212,.3);
   position:relative;
   z-index:10;
 }
 
 .device-topbar{height:32px;display:flex;gap:6px;align-items:center;padding:0 12px}
-.device-topbar .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(180deg,#d9f3e4,#8fd4b1);box-shadow:0 1px 0 #ffffffa8 inset}
+.device-topbar .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(180deg,#e3f9fa,#a9e8ea);box-shadow:0 1px 0 #ffffffa8 inset}
 
 .viewport{
   height:min(760px, calc(100vh - 140px));
@@ -81,12 +81,12 @@ body{
 @media (max-width:768px){
   body{
     background:
-      radial-gradient(circle at 15% 15%, rgba(31,157,99,0.42) 0%, transparent 35%),
-      radial-gradient(circle at 85% 10%, rgba(127,204,162,0.45) 0%, transparent 30%),
-      radial-gradient(circle at 10% 85%, rgba(20,132,85,0.35) 0%, transparent 35%),
+      radial-gradient(circle at 15% 15%, rgba(99,207,212,0.42) 0%, transparent 35%),
+      radial-gradient(circle at 85% 10%, rgba(147,221,224,0.45) 0%, transparent 30%),
+      radial-gradient(circle at 10% 85%, rgba(72,183,188,0.35) 0%, transparent 35%),
       radial-gradient(circle at 90% 85%, rgba(212,175,55,0.25) 0%, transparent 30%),
       radial-gradient(circle at 50% 50%, rgba(180,227,199,0.35) 0%, transparent 45%),
-      linear-gradient(135deg, #f3fbf7 0%, #dcf3e6 20%, #b4e3c7 50%, #dcf3e6 80%, #f3fbf7 100%);
+      linear-gradient(135deg, #f4fcfc 0%, #e6f7f8 20%, #bfeff0 50%, #e6f7f8 80%, #f4fcfc 100%);
     background-attachment:fixed;
   }
   .device-frame{
@@ -117,15 +117,15 @@ body{
   .floating-symbol{
     font-size:1.8rem;
     opacity:0.7;
-    filter:drop-shadow(0 2px 8px rgba(31,157,99,0.4));
+    filter:drop-shadow(0 2px 8px rgba(99,207,212,0.4));
   }
 }
 
 /* Visible custom scrollbar */
 .viewport::-webkit-scrollbar{width:10px}
 .viewport::-webkit-scrollbar-track{background:#f2f3f4;border-radius:999px}
-.viewport::-webkit-scrollbar-thumb{background:#8bcfab;border-radius:999px;border:2px solid #f2f3f4}
-.viewport{scrollbar-color:#8bcfab #f2f3f4;scrollbar-width:thin}
+.viewport::-webkit-scrollbar-thumb{background:#8edfe2;border-radius:999px;border:2px solid #f2f3f4}
+.viewport{scrollbar-color:#8edfe2 #f2f3f4;scrollbar-width:thin}
 
 .header{display:grid;justify-items:center;text-align:center;margin:0 0 24px 0;animation:fadeSlideDown 0.8s ease;padding:20px 12px 12px 12px;overflow:visible}
 
@@ -167,7 +167,7 @@ body{
   100%{transform:translate(var(--tx, 0), var(--ty, 100vh)) rotate(720deg);opacity:0}
 }
 
-.brand-title{font-family:"Great Vibes",cursive;font-size:clamp(2rem,8vw,2.6rem);line-height:1.4;margin:0;padding-top:0.3em;background:linear-gradient(45deg,#0f7f50,#1f9d63,#d4af37,#0f7f50);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 6s ease infinite}
+.brand-title{font-family:"Great Vibes",cursive;font-size:clamp(2rem,8vw,2.6rem);line-height:1.4;margin:0;padding-top:0.3em;background:linear-gradient(45deg,#48b7bc,#63cfd4,#d4af37,#48b7bc);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 6s ease infinite}
 .tagline{margin:.25rem 0 0;color:var(--text-700);font-size:0.95rem}
 
 .order-banner{margin:20px auto 0;padding:12px 20px;background:linear-gradient(135deg,var(--pink-100),var(--pink-50));border:1px solid var(--pink-200);border-radius:12px;max-width:90%;animation:fadeIn 1s ease 0.5s backwards}
@@ -311,7 +311,7 @@ body{
 }
 
 /* Eid placeholder backgrounds */
-.ph--eid{background:linear-gradient(135deg, #eef9f2 0%, #d6f1e0 50%, #b4e3c7 100%)}
+.ph--eid{background:linear-gradient(135deg, #eefafb 0%, #d9f3f5 50%, #bfeff0 100%)}
 .ph--moonstars{background:linear-gradient(180deg, #f2fbf6 0%, #e2f5ea 100%)}
 .ph--lantern{background:linear-gradient(135deg, #f4fbf7 0%, #def3e8 100%)}
 .ph--crescent{background:linear-gradient(180deg, #f6fcf8 0%, #e4f6ec 50%, #cdecd9 100%)}
@@ -354,7 +354,7 @@ body{
 
 .lightbox-info{display:flex;align-items:baseline;justify-content:space-between;padding:0 18px 18px;flex-wrap:wrap;gap:8px;flex-shrink:0}
 .lightbox-name{font-weight:700}
-.lightbox-price{color:#127b4d;font-weight:700}
+.lightbox-price{color:#279da3;font-weight:700}
 .lightbox-note{color:var(--text-500);font-size:.95rem;width:100%;margin-top:4px}
 
 /* Mobile lightbox - full screen */
