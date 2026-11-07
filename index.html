@@ -48,12 +48,12 @@
 			</div>
 			</header>
 
-			<section class="products" aria-label="Christmas Cookie products list">
+			<section class="products" id="products" aria-label="Christmas Cookie products list">
 				<!-- Product 1 - Assorted dozen -->
 				<article class="product-card">
-					<button class="product-trigger" data-name="Christmas assorted dozen" data-price="$200" data-img="images/NO.1.jpeg" aria-label="View Christmas assorted dozen">
+					<button class="product-trigger" data-name="Christmas assorted dozen" data-price="$200" data-img="images/No.1.png" aria-label="View Christmas assorted dozen">
 						<div class="product-img">
-							<img src="images/NO.1.jpeg" alt="Assorted dozen cookies" loading="lazy" decoding="async" />
+							<img src="images/No.1.png" alt="Assorted dozen cookies" loading="lazy" decoding="async" />
 						</div>
 						<div class="product-info">
 							<h2 class="product-name">1. Christmas assorted dozen</h2>
@@ -65,9 +65,9 @@
 
 				<!-- Product - Paint Your Own Cookie -->
 				<article class="product-card">
-					<button class="product-trigger" data-name="Paint your own Christmas cookie" data-price="$50" data-img="images/No.2.jpeg" aria-label="View paint your own Christmas cookie">
+					<button class="product-trigger" data-name="Paint your own Christmas cookie" data-price="$50" data-img="images/No.2.png" aria-label="View paint your own Christmas cookie">
 						<div class="product-img">
-							<img src="images/No.2.jpeg" alt="Paint your own Christmas cookie" loading="lazy" decoding="async" />
+							<img src="images/No.2.png" alt="Paint your own Christmas cookie" loading="lazy" decoding="async" />
 						</div>
 						<div class="product-info price-only">
 							<h2 class="product-name">2. Paint your own cookie</h2>
@@ -79,9 +79,9 @@
 
 				<!-- Product 3 - Mini DIY -->
 				<article class="product-card">
-					<button class="product-trigger" data-name="Christmas mini DIY kit" data-price="$35" data-img="images/No.3.jpeg" aria-label="View Christmas mini DIY kit">
+					<button class="product-trigger" data-name="Christmas mini DIY kit" data-price="$35" data-img="images/No.3.png" aria-label="View Christmas mini DIY kit">
 						<div class="product-img">
-							<img src="images/No.3.jpeg" alt="Mini DIY" loading="lazy" decoding="async" />
+							<img src="images/No.3.png" alt="Mini DIY" loading="lazy" decoding="async" />
 						</div>
 						<div class="product-info">
 							<h2 class="product-name">3. Christmas mini DIY</h2>
@@ -93,9 +93,9 @@
 
 				<!-- Product 4 - Paint Your Own -->
 				<article class="product-card">
-					<button class="product-trigger" data-name="Paint your own Christmas set" data-price="$40" data-img="images/NO.4.jpeg" aria-label="View paint your own Christmas set">
+					<button class="product-trigger" data-name="Paint your own Christmas set" data-price="$40" data-img="images/No.4.png" aria-label="View paint your own Christmas set">
 						<div class="product-img">
-							<img src="images/NO.4.jpeg" alt="Paint Your Own" loading="lazy" decoding="async" />
+							<img src="images/No.4.png" alt="Paint Your Own" loading="lazy" decoding="async" />
 						</div>
 						<div class="product-info">
 							<h2 class="product-name">4. Paint your own Christmas set</h2>
@@ -107,9 +107,9 @@
 
 				<!-- Product - Mini DIY Kit -->
 				<article class="product-card">
-					<button class="product-trigger" data-name="Christmas DIY gift packs" data-price="$200" data-img="images/No.5.jpeg" aria-label="View Christmas DIY gift packs">
+					<button class="product-trigger" data-name="Christmas DIY gift packs" data-price="$200" data-img="images/No.5.png" aria-label="View Christmas DIY gift packs">
 						<div class="product-img">
-							<img src="images/No.5.jpeg" alt="Christmas DIY gift packs" loading="lazy" decoding="async" />
+							<img src="images/No.5.png" alt="Christmas DIY gift packs" loading="lazy" decoding="async" />
 						</div>
 						<div class="product-info price-only">
 							<h2 class="product-name">5. Christmas DIY gift packs</h2>
@@ -415,6 +415,31 @@
 				});
 			};
 
+			const addAdditionalProducts = () => {
+				const products = document.getElementById('products');
+				if (!products) return;
+
+				for (let number = 6; number <= 18; number++) {
+					const name = `Christmas Cookie No. ${number}`;
+					const image = `images/No.${number}.png`;
+					const card = document.createElement('article');
+					card.className = 'product-card';
+					card.innerHTML = `
+						<button class="product-trigger" data-name="${name}" data-price="$50" data-img="${image}" aria-label="View ${name}">
+							<div class="product-img">
+								<img src="${image}" alt="${name}" loading="lazy" decoding="async" />
+							</div>
+							<div class="product-info">
+								<h2 class="product-name">${number}. Christmas cookie selection</h2>
+								<div class="product-price">$50</div>
+							</div>
+						</button>
+						<button class="add-to-cart-btn" data-name="${name}" data-price="$50" aria-label="Add ${name} to cart">🛒 Add to Cart</button>
+					`;
+					products.appendChild(card);
+				}
+			};
+
 			const initProducts = () => {
 				allProducts = Array.from(document.querySelectorAll('.product-trigger')).map(trigger => ({
 					name: trigger.getAttribute('data-name'),
@@ -440,6 +465,7 @@
 			};
 
 			document.addEventListener('DOMContentLoaded', () => {
+				addAdditionalProducts();
 				initProducts();
 				createFloatingSymbols();
 				enableMobileReveal();
