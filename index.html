@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+		<meta name="theme-color" content="#143d35" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<title>Sugarlicious Cookies — Christmas Cookie Collection</title>
+		<meta name="description" content="Sugarlicious Cookies — Festive Christmas Decorated Sugar Cookies" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="css/styles.css" />
+	</head>
+	<body>
+		<a class="skip-link" href="#content">Skip to content</a>
+
+		<div class="scene-bg" aria-hidden="true"></div>
+		
+		<!-- Floating Christmas symbols background -->
+		<div id="floatingSymbols" class="floating-symbols" aria-hidden="true"></div>
+		
+		<!-- Particle constellation background -->
+		<canvas id="constellation" class="constellation-canvas" aria-hidden="true"></canvas>
+
+		<div class="device-frame" role="region" aria-label="Sugarlicious Cookies portfolio">
+			<div class="device-topbar" aria-hidden="true">
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+			</div>
+
+			<main id="content" class="viewport" tabindex="-1">
+				<header class="header">
+					<div class="brand-mark">
+						<img src="images/Logo.jpg" alt="Sugarlicious Cookies logo" class="brand-logo" loading="lazy" decoding="async" />
+					</div>
+				   <h1 class="brand-title">Sugarlicious Cookies</h1>
+				<p class="tagline">Christmas Decorated Sugar Cookies</p>
+			<div class="order-banner">
+				<p>🎄 Order on WhatsApp | Follow our festive treats</p>
+				<div class="social-links">
+					<a class="social-btn whatsapp-btn" href="https://wa.me/message/XOR7VGU5N2CEO1" target="_blank" rel="noopener noreferrer">Order on WhatsApp</a>
+					<a class="social-btn instagram-btn" href="https://www.instagram.com/sugarliciouscookiestnt/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a>
+					<a class="social-btn facebook-btn" href="https://www.facebook.com/SugarliciousCookies/" target="_blank" rel="noopener noreferrer">Facebook</a>
+				</div>
+			</div>
+			</header>
+
+			<section class="products" aria-label="Christmas Cookie products list">
+				<!-- Product 1 - Assorted dozen -->
+				<article class="product-card">
+					<button class="product-trigger" data-name="Christmas assorted dozen" data-price="$200" data-img="images/NO.1.jpeg" aria-label="View Christmas assorted dozen">
+						<div class="product-img">
+							<img src="images/NO.1.jpeg" alt="Assorted dozen cookies" loading="lazy" decoding="async" />
+						</div>
+						<div class="product-info">
+							<h2 class="product-name">1. Christmas assorted dozen</h2>
+							<div class="product-price">$200</div>
+						</div>
+					</button>
+					<button class="add-to-cart-btn" data-name="Christmas assorted dozen" data-price="$200" aria-label="Add Christmas assorted dozen to cart">🛒 Add to Cart</button>
+				</article>
+
+				<!-- Product - Paint Your Own Cookie -->
+				<article class="product-card">
+					<button class="product-trigger" data-name="Paint your own Christmas cookie" data-price="$50" data-img="images/No.2.jpeg" aria-label="View paint your own Christmas cookie">
+						<div class="product-img">
+							<img src="images/No.2.jpeg" alt="Paint your own Christmas cookie" loading="lazy" decoding="async" />
+						</div>
+						<div class="product-info price-only">
+							<h2 class="product-name">2. Paint your own cookie</h2>
+							<div class="product-price">$50</div>
+						</div>
+					</button>
+					<button class="add-to-cart-btn" data-name="Paint your own Christmas cookie" data-price="$50" aria-label="Add paint your own Christmas cookie to cart">🛒 Add to Cart</button>
+				</article>
+
+				<!-- Product 3 - Mini DIY -->
+				<article class="product-card">
+					<button class="product-trigger" data-name="Christmas mini DIY kit" data-price="$35" data-img="images/No.3.jpeg" aria-label="View Christmas mini DIY kit">
+						<div class="product-img">
+							<img src="images/No.3.jpeg" alt="Mini DIY" loading="lazy" decoding="async" />
+						</div>
+						<div class="product-info">
+							<h2 class="product-name">3. Christmas mini DIY</h2>
+							<div class="product-price">$35</div>
+						</div>
+					</button>
+					<button class="add-to-cart-btn" data-name="Christmas mini DIY kit" data-price="$35" aria-label="Add Christmas mini DIY kit to cart">🛒 Add to Cart</button>
+				</article>
+
+				<!-- Product 4 - Paint Your Own -->
+				<article class="product-card">
+					<button class="product-trigger" data-name="Paint your own Christmas set" data-price="$40" data-img="images/NO.4.jpeg" aria-label="View paint your own Christmas set">
+						<div class="product-img">
+							<img src="images/NO.4.jpeg" alt="Paint Your Own" loading="lazy" decoding="async" />
+						</div>
+						<div class="product-info">
+							<h2 class="product-name">4. Paint your own Christmas set</h2>
+							<div class="product-price">$40</div>
+						</div>
+					</button>
+					<button class="add-to-cart-btn" data-name="Paint your own Christmas set" data-price="$40" aria-label="Add paint your own Christmas set to cart">🛒 Add to Cart</button>
+				</article>
+
+				<!-- Product - Mini DIY Kit -->
+				<article class="product-card">
+					<button class="product-trigger" data-name="Christmas DIY gift packs" data-price="$200" data-img="images/No.5.jpeg" aria-label="View Christmas DIY gift packs">
+						<div class="product-img">
+							<img src="images/No.5.jpeg" alt="Christmas DIY gift packs" loading="lazy" decoding="async" />
+						</div>
+						<div class="product-info price-only">
+							<h2 class="product-name">5. Christmas DIY gift packs</h2>
+							<div class="product-price">$200 (10 packs)</div>
+						</div>
+					</button>
+					<button class="add-to-cart-btn" data-name="Christmas DIY gift packs" data-price="$200" data-display-price="$200 (10 packs)" aria-label="Add Christmas DIY gift packs to cart">🛒 Add to Cart</button>
+				</article>
+			</section>
+			
+			<div class="scrollbar-hint" aria-hidden="true"></div>
+		</main>
+		</div>
+
+		<!-- Floating Cart Button -->
+		<button class="floating-cart-btn" id="floatingCartBtn" aria-label="View cart">
+			🛒
+			<span class="cart-count" id="cartCount">0</span>
+		</button>
+
+		<!-- Cart Modal -->
+		<div class="cart-modal" id="cartModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Shopping cart">
+			<div class="cart-overlay" data-cart-close></div>
+			<div class="cart-content">
+				<div class="cart-header">
+					<h2 class="cart-title">🛒 Your Order</h2>
+					<button class="cart-close-btn" type="button" aria-label="Close cart" data-cart-close>×</button>
+				</div>
+				<div class="cart-items" id="cartItems">
+					<p class="cart-empty">Your cart is empty. Add some delicious cookies! 🍪</p>
+				</div>
+				<div class="cart-total" id="cartTotal">
+						<span class="cart-total-label">Total:</span>
+						<span class="cart-total-amount" id="cartTotalAmount">$0.00</span>
+					</div>
+					<div class="cart-footer">
+					<button class="clear-cart-btn" id="clearCartBtn" type="button">🗑️ Clear Cart</button>
+					<button class="whatsapp-order-btn" id="whatsappOrderBtn" type="button">
+						<span>💬 Order on WhatsApp</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image preview">
+			<div class="lightbox-overlay" data-close></div>
+			<div class="lightbox-content" role="document">
+				<button class="lightbox-close" type="button" aria-label="Close preview" data-close>×</button>
+				<button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Previous product">‹</button>
+				<button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Next product">›</button>
+				<div class="lightbox-media">
+					<div class="ph" id="lightboxPh" aria-hidden="true"></div>
+					<img id="lightboxImg" alt="" hidden />
+				</div>
+				<div class="lightbox-info">
+					<div class="lightbox-name" id="lightboxName">Product</div>
+					<div class="lightbox-price" id="lightboxPrice">$0/dozen</div>
+					<div class="lightbox-note" id="lightboxNote" hidden>Minimum order: 10</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			// Floating Christmas Symbols Background
+			const createFloatingSymbols = () => {
+				const container = document.getElementById('floatingSymbols');
+				if (!container) return;
+				
+				const symbols = ['🎄', '🎅', '❄️', '🎁', '🔔', '🍪'];
+				const delays = [0, 2, 4, 6, 8, 10, 12, 14];
+				
+				delays.forEach((delay, index) => {
+					const symbol = document.createElement('div');
+					symbol.className = 'floating-symbol';
+					symbol.textContent = symbols[index % symbols.length];
+					symbol.style.left = Math.random() * 100 + '%';
+					symbol.style.animationDuration = (Math.random() * 4 + 8) + 's';
+					symbol.style.animationDelay = delay + 's';
+					symbol.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+					symbol.style.opacity = Math.random() * 0.4 + 0.3;
+					container.appendChild(symbol);
+				});
+				
+				// Create continuous loop
+				setInterval(() => {
+					if (container.children.length < 8) {
+						const symbol = document.createElement('div');
+						symbol.className = 'floating-symbol';
+						symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+						symbol.style.left = Math.random() * 100 + '%';
+						symbol.style.animationDuration = (Math.random() * 4 + 8) + 's';
+						symbol.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+						symbol.style.opacity = Math.random() * 0.4 + 0.3;
+						container.appendChild(symbol);
+						
+						setTimeout(() => symbol.remove(), 12000);
+					}
+				}, 3000);
+			};
+
+			// Confetti Burst on Hover
+			const triggerConfetti = (element) => {
+				const rect = element.getBoundingClientRect();
+				const centerX = rect.left + rect.width / 2;
+				const centerY = rect.top + rect.height / 2;
+				
+				const confettiEmojis = ['🎄', '🎅', '❄️', '🎁', '🔔', '🍪'];
+				
+				for (let i = 0; i < 12; i++) {
+					const confetti = document.createElement('div');
+					confetti.textContent = confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
+					confetti.style.position = 'fixed';
+					confetti.style.left = centerX + 'px';
+					confetti.style.top = centerY + 'px';
+					confetti.style.fontSize = (Math.random() * 20 + 16) + 'px';
+					confetti.style.animation = `confettiFall ${Math.random() * 1.5 + 1.5}s ease-out forwards`;
+					confetti.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 360}deg)`;
+					confetti.style.pointerEvents = 'none';
+					confetti.style.zIndex = '9999';
+					confetti.style.filter = 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))';
+					
+					const angle = (i / 12) * Math.PI * 2;
+					const velocity = Math.random() * 200 + 150;
+					confetti.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+					confetti.style.setProperty('--ty', Math.sin(angle) * velocity - 100 + 'px');
+					
+					document.body.appendChild(confetti);
+					
+					setTimeout(() => confetti.remove(), 2500);
+				}
+			};
+
+			// Add confetti to all product cards
+			const attachConfettiToCards = () => {
+				const productCards = document.querySelectorAll('.product-card');
+				productCards.forEach(card => {
+					card.addEventListener('mouseenter', () => {
+						triggerConfetti(card);
+					});
+				});
+			};
+
+			const lightbox = document.getElementById('lightbox');
+			const phTarget = document.getElementById('lightboxPh');
+			const imgTarget = document.getElementById('lightboxImg');
+			const noteTarget = document.getElementById('lightboxNote');
+			const nameTarget = document.getElementById('lightboxName');
+			const priceTarget = document.getElementById('lightboxPrice');
+			const prevBtn = document.getElementById('lightboxPrev');
+			const nextBtn = document.getElementById('lightboxNext');
+
+			let allProducts = [];
+			let currentIndex = -1;
+
+			const openLightbox = (name, price, phClass, imgSrc, minOrder, index) => {
+				currentIndex = index;
+				nameTarget.textContent = name;
+				priceTarget.textContent = price;
+				if (imgSrc) {
+					imgTarget.removeAttribute('hidden');
+					imgTarget.src = imgSrc;
+					phTarget.setAttribute('hidden','');
+				} else {
+					imgTarget.setAttribute('hidden','');
+					imgTarget.removeAttribute('src');
+					phTarget.removeAttribute('hidden');
+					phTarget.className = 'ph ' + phClass;
+				}
+				if (minOrder) {
+					noteTarget.textContent = `Minimum order: ${minOrder}`;
+					noteTarget.removeAttribute('hidden');
+				} else {
+					noteTarget.setAttribute('hidden','');
+				}
+				lightbox.removeAttribute('aria-hidden');
+				document.body.classList.add('no-scroll');
+				updateNavButtons();
+				window.location.hash = `product=${index + 1}`;
+			};
+
+			const closeLightbox = () => {
+				lightbox.setAttribute('aria-hidden', 'true');
+				document.body.classList.remove('no-scroll');
+				currentIndex = -1;
+				window.location.hash = '';
+			};
+
+			const updateNavButtons = () => {
+				prevBtn.disabled = currentIndex <= 0;
+				nextBtn.disabled = currentIndex >= allProducts.length - 1;
+			};
+
+			const navigateLightbox = (direction) => {
+				const newIndex = currentIndex + direction;
+				if (newIndex >= 0 && newIndex < allProducts.length) {
+					const product = allProducts[newIndex];
+					openLightbox(product.name, product.price, product.ph, product.img, product.minOrder, newIndex);
+				}
+			};
+
+			let touchStartX = 0;
+			let touchEndX = 0;
+			let touchStartY = 0;
+			let touchEndY = 0;
+			const handleSwipe = () => {
+				const deltaX = touchEndX - touchStartX;
+				const deltaY = touchEndY - touchStartY;
+				if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+					if (deltaX < 0) navigateLightbox(1);
+					else navigateLightbox(-1);
+				}
+			};
+
+			document.addEventListener('click', (e) => {
+				const trigger = e.target.closest('.product-trigger');
+				if (trigger) {
+					const name = trigger.getAttribute('data-name');
+					const price = trigger.getAttribute('data-price');
+					const ph = trigger.getAttribute('data-ph');
+					const img = trigger.getAttribute('data-img');
+					const minOrder = trigger.getAttribute('data-min');
+					const index = allProducts.findIndex(p => p.name === name);
+					openLightbox(name, price, ph, img, minOrder, index);
+					return;
+				}
+
+				if (e.target.closest('[data-close]')) {
+					closeLightbox();
+					return;
+				}
+
+				if (e.target.closest('#lightboxPrev')) {
+					navigateLightbox(-1);
+					return;
+				}
+				if (e.target.closest('#lightboxNext')) {
+					navigateLightbox(1);
+					return;
+				}
+			});
+
+			document.addEventListener('keydown', (e) => {
+				if (lightbox.getAttribute('aria-hidden') === 'true') return;
+				if (e.key === 'Escape') closeLightbox();
+				if (e.key === 'ArrowLeft') navigateLightbox(-1);
+				if (e.key === 'ArrowRight') navigateLightbox(1);
+			});
+
+			lightbox.addEventListener('touchstart', (e) => {
+				touchStartX = e.changedTouches[0].screenX;
+				touchStartY = e.changedTouches[0].screenY;
+			}, {passive: true});
+			
+			lightbox.addEventListener('touchend', (e) => {
+				touchEndX = e.changedTouches[0].screenX;
+				touchEndY = e.changedTouches[0].screenY;
+				handleSwipe();
+			}, {passive: true});
+
+			const enableMobileReveal = () => {
+				if (!window.matchMedia('(max-width:480px)').matches) return;
+				const targets = Array.from(document.querySelectorAll('.product-card, .product-row'));
+				if (!targets.length) return;
+				targets.forEach(el => el.classList.add('mobile-animate'));
+				const rootEl = document.querySelector('.viewport');
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('in-view');
+							const priceEl = entry.target.querySelector('.product-price');
+							if (priceEl) {
+								priceEl.classList.add('shimmer');
+								setTimeout(() => priceEl.classList.remove('shimmer'), 800);
+							}
+							observer.unobserve(entry.target);
+						}
+					});
+				},{threshold:0.2, root: rootEl});
+				targets.forEach(el => observer.observe(el));
+			};
+
+			const enableTilt = () => {
+				if (window.matchMedia('(max-width:480px)').matches) return;
+				if (window.matchMedia('(pointer: coarse)').matches) return;
+				if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+				
+				const cards = document.querySelectorAll('.product-card');
+				cards.forEach(card => {
+					card.classList.add('tilt-enabled');
+					card.addEventListener('mousemove', (e) => {
+						const rect = card.getBoundingClientRect();
+						const x = e.clientX - rect.left;
+						const y = e.clientY - rect.top;
+						const centerX = rect.width / 2;
+						const centerY = rect.height / 2;
+						const rotateX = ((y - centerY) / centerY) * -8;
+						const rotateY = ((x - centerX) / centerX) * 8;
+						card.style.transform = `translateY(-4px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+					});
+					card.addEventListener('mouseleave', () => {
+						card.style.transform = '';
+					});
+				});
+			};
+
+			const initProducts = () => {
+				allProducts = Array.from(document.querySelectorAll('.product-trigger')).map(trigger => ({
+					name: trigger.getAttribute('data-name'),
+					price: trigger.getAttribute('data-price'),
+					ph: trigger.getAttribute('data-ph'),
+					img: trigger.getAttribute('data-img'),
+					minOrder: trigger.getAttribute('data-min')
+				}));
+			};
+
+			const handleDeepLink = () => {
+				const hash = window.location.hash;
+				const match = hash.match(/product=(\d+)/);
+				if (match) {
+					const index = parseInt(match[1], 10) - 1;
+					if (index >= 0 && index < allProducts.length) {
+						const product = allProducts[index];
+						setTimeout(() => {
+							openLightbox(product.name, product.price, product.ph, product.img, product.minOrder, index);
+						}, 100);
+					}
+				}
+			};
+
+			document.addEventListener('DOMContentLoaded', () => {
+				initProducts();
+				createFloatingSymbols();
+				enableMobileReveal();
+				enableTilt();
+				attachConfettiToCards();
+				handleDeepLink();
+				initCart();
+			});
+
+			// Shopping Cart System
+			const initCart = () => {
+				let cart = JSON.parse(localStorage.getItem('sugarliciousCart')) || [];
+				
+				const cartModal = document.getElementById('cartModal');
+				const cartItems = document.getElementById('cartItems');
+				const cartCount = document.getElementById('cartCount');
+				const floatingCartBtn = document.getElementById('floatingCartBtn');
+				const clearCartBtn = document.getElementById('clearCartBtn');
+				const whatsappOrderBtn = document.getElementById('whatsappOrderBtn');
+				
+				// WhatsApp number (extracted from existing link)
+				const whatsappLink = 'https://wa.me/message/XOR7VGU5N2CEO1';
+				
+				const saveCart = () => {
+					localStorage.setItem('sugarliciousCart', JSON.stringify(cart));
+					updateCartUI();
+				};
+				
+				// Helper function to parse price from string like "$25" or "$0"
+				const parsePrice = (priceStr) => {
+					const match = priceStr.match(/[\d.]+/);
+					return match ? parseFloat(match[0]) : 0;
+				};
+				
+				// Calculate total cost
+				const calculateTotal = () => {
+					return cart.reduce((sum, item) => {
+						const price = parsePrice(item.price);
+						return sum + (price * item.quantity);
+					}, 0);
+				};
+				
+				const cartTotalEl = document.getElementById('cartTotal');
+				const cartTotalAmount = document.getElementById('cartTotalAmount');
+				
+				const updateCartUI = () => {
+					// Update cart count
+					const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+					cartCount.textContent = totalItems;
+					cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+					
+					// Update floating button visibility
+					floatingCartBtn.classList.toggle('has-items', totalItems > 0);
+					
+					// Calculate and display total
+					const total = calculateTotal();
+					cartTotalAmount.textContent = `$${total.toFixed(2)}`;
+					
+					// Update cart items display
+					if (cart.length === 0) {
+						cartItems.innerHTML = '<p class="cart-empty">Your cart is empty. Add some delicious cookies! 🍪</p>';
+						clearCartBtn.style.display = 'none';
+						whatsappOrderBtn.disabled = true;
+						cartTotalEl.style.display = 'none';
+					} else {
+						clearCartBtn.style.display = 'block';
+						whatsappOrderBtn.disabled = false;
+						cartTotalEl.style.display = 'flex';
+						
+						let html = '';
+						cart.forEach((item, index) => {
+							const itemPrice = parsePrice(item.price);
+							const itemTotal = itemPrice * item.quantity;
+							html += `
+								<div class="cart-item" data-index="${index}">
+									<div class="cart-item-info">
+										<span class="cart-item-name">${item.name}</span>
+										<span class="cart-item-price">${item.displayPrice || `${item.price} each`}</span>
+										<span class="cart-item-subtotal">Subtotal: $${itemTotal.toFixed(2)}</span>
+									</div>
+									<div class="cart-item-controls">
+										<button class="qty-btn minus" data-index="${index}" aria-label="Decrease quantity">−</button>
+										<span class="cart-item-qty">${item.quantity}</span>
+										<button class="qty-btn plus" data-index="${index}" aria-label="Increase quantity">+</button>
+										<button class="remove-btn" data-index="${index}" aria-label="Remove item">🗑️</button>
+									</div>
+								</div>
+							`;
+						});
+						cartItems.innerHTML = html;
+					}
+				};
+				
+				const addToCart = (name, price, displayPrice) => {
+					const existingItem = cart.find(item => item.name === name);
+					if (existingItem) {
+						existingItem.quantity += 1;
+						if (displayPrice) existingItem.displayPrice = displayPrice;
+					} else {
+						cart.push({ name, price, displayPrice, quantity: 1 });
+					}
+					saveCart();
+					
+					// Show feedback animation
+					showAddedFeedback();
+				};
+				
+				const showAddedFeedback = () => {
+					floatingCartBtn.classList.add('bounce');
+					setTimeout(() => floatingCartBtn.classList.remove('bounce'), 500);
+				};
+				
+				const updateQuantity = (index, delta) => {
+					if (cart[index]) {
+						cart[index].quantity += delta;
+						if (cart[index].quantity <= 0) {
+							cart.splice(index, 1);
+						}
+						saveCart();
+					}
+				};
+				
+				const removeItem = (index) => {
+					cart.splice(index, 1);
+					saveCart();
+				};
+				
+				const clearCart = () => {
+					cart = [];
+					saveCart();
+				};
+				
+				const openCart = () => {
+					cartModal.removeAttribute('aria-hidden');
+					document.body.classList.add('no-scroll');
+				};
+				
+				const closeCart = () => {
+					cartModal.setAttribute('aria-hidden', 'true');
+					document.body.classList.remove('no-scroll');
+				};
+				
+				const generateWhatsAppMessage = () => {
+					if (cart.length === 0) return '';
+					
+					const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+					const totalCost = calculateTotal();
+					
+					let message = '🍪🎄 *SUGARLICIOUS COOKIES CHRISTMAS ORDER* 🎄🍪\n';
+					message += '━━━━━━━━━━━━━━━━━━━━━━\n\n';
+					
+					message += '📋 *ORDER SUMMARY*\n\n';
+					
+					cart.forEach((item, index) => {
+						const itemPrice = parsePrice(item.price);
+						const itemTotal = itemPrice * item.quantity;
+						
+						message += `*${index + 1}. ${item.name}*\n`;
+						message += `   • Price: ${item.displayPrice || item.price}\n`;
+						message += `   • Qty: ${item.quantity}\n`;
+						message += `   • Subtotal: $${itemTotal.toFixed(2)}\n\n`;
+					});
+					
+					message += '━━━━━━━━━━━━━━━━━━━━━━\n';
+					message += `📦 *Total Items:* ${totalItems}\n`;
+					message += `💰 *TOTAL COST: $${totalCost.toFixed(2)}*\n`;
+					message += '━━━━━━━━━━━━━━━━━━━━━━\n\n';
+										message += '📸 *Please forward screenshot of payment*\n\n';
+										message += ' Merry Christmas and thank you for choosing Sugarlicious Cookies! 🎄';
+					
+					return encodeURIComponent(message);
+				};
+				
+				const sendWhatsAppOrder = () => {
+					if (cart.length === 0) {
+						alert('Your cart is empty! Please add some items first.');
+						return;
+					}
+					
+					const message = generateWhatsAppMessage();
+					// Send directly to Sugarlicious Cookies WhatsApp with pre-filled order message
+					const phoneNumber = '18683354131'; // Trinidad & Tobago: +1868-335-4131
+					const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+					window.open(whatsappUrl, '_blank');
+				};
+				
+				// Event Listeners
+				document.addEventListener('click', (e) => {
+					// Add to cart button
+					const addBtn = e.target.closest('.add-to-cart-btn');
+					if (addBtn) {
+						e.stopPropagation();
+						const name = addBtn.getAttribute('data-name');
+						const price = addBtn.getAttribute('data-price');
+						const displayPrice = addBtn.getAttribute('data-display-price');
+						addToCart(name, price, displayPrice);
+						return;
+					}
+					
+					// Cart quantity controls
+					const qtyBtn = e.target.closest('.qty-btn');
+					if (qtyBtn) {
+						const index = parseInt(qtyBtn.getAttribute('data-index'));
+						const delta = qtyBtn.classList.contains('plus') ? 1 : -1;
+						updateQuantity(index, delta);
+						return;
+					}
+					
+					// Remove item
+					const removeBtn = e.target.closest('.remove-btn');
+					if (removeBtn) {
+						const index = parseInt(removeBtn.getAttribute('data-index'));
+						removeItem(index);
+						return;
+					}
+					
+					// Close cart
+					if (e.target.closest('[data-cart-close]')) {
+						closeCart();
+						return;
+					}
+				});
+				
+				// Floating cart button
+				floatingCartBtn.addEventListener('click', openCart);
+				
+				// Clear cart
+				clearCartBtn.addEventListener('click', () => {
+					if (confirm('Are you sure you want to clear your cart?')) {
+						clearCart();
+					}
+				});
+				
+				// WhatsApp order
+				whatsappOrderBtn.addEventListener('click', sendWhatsAppOrder);
+				
+				// Escape key to close cart
+				document.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape' && cartModal.getAttribute('aria-hidden') !== 'true') {
+						closeCart();
+					}
+				});
+				
+				// Initialize UI
+				updateCartUI();
+			};
+
+			// Particle Constellation Background
+			(() => {
+				const canvas = document.getElementById('constellation');
+				if (!canvas) return;
+				
+				const ctx = canvas.getContext('2d');
+				let particles = [];
+				let animationId;
+				
+				const isMobile = window.innerWidth <= 480;
+				const particleCount = isMobile ? 30 : 60;
+				const connectionDistance = isMobile ? 120 : 150;
+				const moveSpeed = isMobile ? 0.3 : 0.5;
+				
+				const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				
+				const resizeCanvas = () => {
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+				};
+				
+				class Particle {
+					constructor() {
+						this.x = Math.random() * canvas.width;
+						this.y = Math.random() * canvas.height;
+						this.z = Math.random() * 100 - 50;
+						this.vx = (Math.random() - 0.5) * moveSpeed;
+						this.vy = (Math.random() - 0.5) * moveSpeed;
+						this.vz = (Math.random() - 0.5) * 0.2;
+						this.radius = Math.random() * 2 + 1;
+					}
+					
+					update() {
+						if (prefersReducedMotion) return;
+						
+						this.x += this.vx;
+						this.y += this.vy;
+						this.z += this.vz;
+						
+						if (this.x < 0) this.x = canvas.width;
+						if (this.x > canvas.width) this.x = 0;
+						if (this.y < 0) this.y = canvas.height;
+						if (this.y > canvas.height) this.y = 0;
+						if (this.z < -50) this.z = 50;
+						if (this.z > 50) this.z = -50;
+					}
+					
+					draw() {
+						const scale = 1 + (this.z / 100);
+						const alpha = 0.4 + (this.z / 200);
+						const size = this.radius * scale;
+						
+						ctx.beginPath();
+						ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+						ctx.fillStyle = `rgba(99, 207, 212, ${alpha})`;
+						ctx.fill();
+					}
+				}
+				
+				const init = () => {
+					resizeCanvas();
+					particles = [];
+					for (let i = 0; i < particleCount; i++) {
+						particles.push(new Particle());
+					}
+				};
+				
+				const drawConnections = () => {
+					for (let i = 0; i < particles.length; i++) {
+						for (let j = i + 1; j < particles.length; j++) {
+							const dx = particles[i].x - particles[j].x;
+							const dy = particles[i].y - particles[j].y;
+							const dz = particles[i].z - particles[j].z;
+							const distance = Math.sqrt(dx * dx + dy * dy + dz * dz * 0.5);
+							
+							if (distance < connectionDistance) {
+								const opacity = (1 - distance / connectionDistance) * 0.3;
+								ctx.beginPath();
+								ctx.moveTo(particles[i].x, particles[i].y);
+								ctx.lineTo(particles[j].x, particles[j].y);
+								ctx.strokeStyle = `rgba(64, 224, 208, ${opacity})`;
+								ctx.lineWidth = 1;
+								ctx.stroke();
+							}
+						}
+					}
+				};
+				
+				const animate = () => {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					
+					particles.forEach(particle => {
+						particle.update();
+						particle.draw();
+					});
+					
+					drawConnections();
+					
+					animationId = requestAnimationFrame(animate);
+				};
+				
+				window.addEventListener('resize', () => {
+					resizeCanvas();
+				});
+				
+				init();
+				if (!prefersReducedMotion) {
+					animate();
+				} else {
+					particles.forEach(particle => particle.draw());
+					drawConnections();
+				}
+				
+				window.addEventListener('beforeunload', () => {
+					if (animationId) cancelAnimationFrame(animationId);
+				});
+			})();
+		</script>
+	</body>
+</html>
