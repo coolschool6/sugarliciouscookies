@@ -659,26 +659,26 @@
 					const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 					const totalCost = calculateTotal();
 					
-					let message = '🍪🎄 *SUGARLICIOUS COOKIES CHRISTMAS ORDER* 🎄🍪\n';
+					let message = '🍪🎄 SUGARLICIOUS COOKIES CHRISTMAS ORDER 🎄🍪\n';
 					message += '━━━━━━━━━━━━━━━━━━━━━━\n\n';
 					
-					message += '📋 *ORDER SUMMARY*\n\n';
+					message += '📋 ORDER SUMMARY\n\n';
 					
 					cart.forEach((item, index) => {
 						const itemPrice = parsePrice(item.price);
 						const itemTotal = itemPrice * item.quantity;
 						
-						message += `*${index + 1}. ${item.name}*\n`;
+						message += `${index + 1}. ${item.name}\n`;
 						message += `   • Price: ${item.displayPrice || item.price}\n`;
 						message += `   • Qty: ${item.quantity}\n`;
 						message += `   • Subtotal: $${itemTotal.toFixed(2)}\n\n`;
 					});
 					
 					message += '━━━━━━━━━━━━━━━━━━━━━━\n';
-					message += `📦 *Total Items:* ${totalItems}\n`;
-					message += `💰 *TOTAL COST: $${totalCost.toFixed(2)}*\n`;
+					message += `📦 Total Items: ${totalItems}\n`;
+					message += `💰 TOTAL COST: $${totalCost.toFixed(2)}\n`;
 					message += '━━━━━━━━━━━━━━━━━━━━━━\n\n';
-					message += '📸 *Please forward screenshot of payment to complete your booking*\n\n';
+					message += '📸 Please forward screenshot of payment to complete your booking\n\n';
 					message += ' Merry Christmas and thank you for choosing Sugarlicious Cookies! 🎄';
 					
 					return encodeURIComponent(message);
