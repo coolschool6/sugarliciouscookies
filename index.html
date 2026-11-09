@@ -451,7 +451,7 @@
 								<div class="product-price">${product.displayPrice || product.price}</div>
 							</div>
 						</button>
-						<button class="add-to-cart-btn" data-name="${name}" data-price="${product.price}"${product.displayPrice ? ` data-display-price="${product.displayPrice}"` : ''} aria-label="Add ${name} to cart">🛒 Add to Cart</button>
+						<button class="add-to-cart-btn" data-name="${name}" data-price="${product.price}"${product.displayPrice ? ` data-display-price="${product.displayPrice}"` : ''}${number === 18 ? ' data-position-options="Top,Middle,Bottom"' : ''} aria-label="Add ${name} to cart">🛒 Add to Cart</button>
 					`;
 					products.appendChild(card);
 				}
@@ -650,7 +650,8 @@
 					message += `📦 *Total Items:* ${totalItems}\n`;
 					message += `💰 *TOTAL COST: $${totalCost.toFixed(2)}*\n`;
 					message += '━━━━━━━━━━━━━━━━━━━━━━\n\n';
-										message += '📸 *Please forward screenshot of payment*\n\n';
+										message += '📸 *Please forward screenshot of payment to complete your booking*\n';
+										message += '*To complete your booking.*\n\n';
 										message += ' Merry Christmas and thank you for choosing Sugarlicious Cookies! 🎄';
 					
 					return encodeURIComponent(message);
@@ -678,7 +679,20 @@
 						const name = addBtn.getAttribute('data-name');
 						const price = addBtn.getAttribute('data-price');
 						const displayPrice = addBtn.getAttribute('data-display-price');
-						addToCart(name, price, displayPrice);
+						const positionOptions = addBtn.getAttribute('data-position-options');
+						let cartName = name;
+						if (positionOptions) {
+							const options = positionOptions.split(',');
+							const selectedPosition = window.prompt(`Choose a position for ${name}:\n${options.join(', ')}`, options[0]);
+							if (selectedPosition === null) return;
+							const normalizedPosition = options.find(option => option.toLowerCase() === selectedPosition.trim().toLowerCase());
+							if (!normalizedPosition) {
+								window.alert(`Please choose one of these options: ${options.join(', ')}.`);
+								return;
+							}
+							cartName = `${name} (${normalizedPosition})`;
+						}
+						addToCart(cartName, price, displayPrice);
 						return;
 					}
 					
