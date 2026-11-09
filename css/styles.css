@@ -450,6 +450,18 @@ body{
 .lightbox-price{color:#1faab0;font-weight:700}
 .lightbox-note{color:var(--text-500);font-size:.95rem;width:100%;margin-top:4px}
 
+/* Product option picker */
+.position-modal[aria-hidden="true"]{display:none}
+.position-modal{position:fixed;inset:0;z-index:10002;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .2s ease}
+.position-overlay{position:absolute;inset:0;background:rgba(23,22,28,.72)}
+.position-content{position:relative;width:min(420px,100%);padding:28px 24px 24px;background:var(--white);border-radius:20px;box-shadow:var(--shadow-lg);text-align:center;animation:zoomIn .2s ease}
+.position-content h2{margin:0;color:var(--text-900);font-size:1.35rem}
+.position-content p{margin:8px 0 20px;color:var(--text-700)}
+.position-close{position:absolute;top:10px;right:10px;width:36px;height:36px;border:1px solid #e6e6ea;border-radius:50%;background:#fff;font-size:22px;cursor:pointer}
+.position-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.position-options button{padding:12px 8px;border:0;border-radius:12px;background:linear-gradient(135deg,#a51f2b,#d64a45);color:#fff;font-size:1rem;font-weight:700;cursor:pointer}
+.position-options button:hover{transform:translateY(-2px);box-shadow:0 5px 12px rgba(165,31,43,.25)}
+
 /* Mobile lightbox - full screen */
 @media (max-width:768px){
   .lightbox{padding:0}

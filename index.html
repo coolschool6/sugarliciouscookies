@@ -172,6 +172,20 @@
 			</div>
 		</div>
 
+		<div class="position-modal" id="positionModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="positionTitle">
+			<div class="position-overlay" data-position-close></div>
+			<div class="position-content">
+				<button class="position-close" type="button" aria-label="Close position selection" data-position-close>×</button>
+				<h2 id="positionTitle">Choose a position</h2>
+				<p id="positionPrompt">Where should your Christmas Rectangle Box go?</p>
+				<div class="position-options">
+					<button type="button" data-position="Top">Top</button>
+					<button type="button" data-position="Middle">Middle</button>
+					<button type="button" data-position="Bottom">Bottom</button>
+				</div>
+			</div>
+		</div>
+
 		<script>
 			// Floating Christmas Symbols Background
 			const createFloatingSymbols = () => {
@@ -502,6 +516,9 @@
 				const floatingCartBtn = document.getElementById('floatingCartBtn');
 				const clearCartBtn = document.getElementById('clearCartBtn');
 				const whatsappOrderBtn = document.getElementById('whatsappOrderBtn');
+				const positionModal = document.getElementById('positionModal');
+				const positionPrompt = document.getElementById('positionPrompt');
+				let positionSelectionCallback = null;
 				
 				// WhatsApp number (extracted from existing link)
 				const whatsappLink = 'https://wa.me/message/XOR7VGU5N2CEO1';
@@ -624,6 +641,20 @@
 					cartModal.setAttribute('aria-hidden', 'true');
 					document.body.classList.remove('no-scroll');
 				};
+
+				const closePositionPicker = () => {
+					if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+					positionModal.setAttribute('aria-hidden', 'true');
+					positionSelectionCallback = null;
+					document.body.classList.remove('no-scroll');
+				};
+
+				const openPositionPicker = (name, callback) => {
+					positionPrompt.textContent = `Where should your ${name} go?`;
+					positionSelectionCallback = callback;
+					positionModal.removeAttribute('aria-hidden');
+					document.body.classList.add('no-scroll');
+				};
 				
 				const generateWhatsAppMessage = () => {
 					if (cart.length === 0) return '';
@@ -680,19 +711,29 @@
 						const price = addBtn.getAttribute('data-price');
 						const displayPrice = addBtn.getAttribute('data-display-price');
 						const positionOptions = addBtn.getAttribute('data-position-options');
-						let cartName = name;
 						if (positionOptions) {
 							const options = positionOptions.split(',');
-							const selectedPosition = window.prompt(`Choose a position for ${name}:\n${options.join(', ')}`, options[0]);
-							if (selectedPosition === null) return;
-							const normalizedPosition = options.find(option => option.toLowerCase() === selectedPosition.trim().toLowerCase());
-							if (!normalizedPosition) {
-								window.alert(`Please choose one of these options: ${options.join(', ')}.`);
-								return;
-							}
-							cartName = `${name} (${normalizedPosition})`;
+							openPositionPicker(name, (selectedPosition) => {
+								const normalizedPosition = options.find(option => option.toLowerCase() === selectedPosition.toLowerCase());
+								if (normalizedPosition) addToCart(`${name} (${normalizedPosition})`, price, displayPrice);
+							});
+							return;
 						}
-						addToCart(cartName, price, displayPrice);
+						addToCart(name, price, displayPrice);
+						return;
+					}
+
+					const positionChoice = e.target.closest('[data-position]');
+					if (positionChoice) {
+						const selectedPosition = positionChoice.getAttribute('data-position');
+						const callback = positionSelectionCallback;
+						closePositionPicker();
+						if (callback) callback(selectedPosition);
+						return;
+					}
+
+					if (e.target.closest('[data-position-close]')) {
+						closePositionPicker();
 						return;
 					}
 					
