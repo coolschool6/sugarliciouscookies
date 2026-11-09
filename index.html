@@ -177,7 +177,6 @@
 			<div class="position-content">
 				<button class="position-close" type="button" aria-label="Close position selection" data-position-close>×</button>
 				<h2 id="positionTitle">Which Christmas box?</h2>
-				<p id="positionPrompt">Which Christmas box?</p>
 				<div class="position-options">
 					<button type="button" data-position="Top">Top</button>
 					<button type="button" data-position="Middle">Middle</button>
@@ -517,7 +516,6 @@
 				const clearCartBtn = document.getElementById('clearCartBtn');
 				const whatsappOrderBtn = document.getElementById('whatsappOrderBtn');
 				const positionModal = document.getElementById('positionModal');
-				const positionPrompt = document.getElementById('positionPrompt');
 				let positionSelectionCallback = null;
 				
 				// WhatsApp number (extracted from existing link)
@@ -649,8 +647,7 @@
 					document.body.classList.remove('no-scroll');
 				};
 
-				const openPositionPicker = (name, callback) => {
-					positionPrompt.textContent = 'Which Christmas box?';
+				const openPositionPicker = (callback) => {
 					positionSelectionCallback = callback;
 					positionModal.removeAttribute('aria-hidden');
 					document.body.classList.add('no-scroll');
@@ -681,9 +678,8 @@
 					message += `📦 *Total Items:* ${totalItems}\n`;
 					message += `💰 *TOTAL COST: $${totalCost.toFixed(2)}*\n`;
 					message += '━━━━━━━━━━━━━━━━━━━━━━\n\n';
-										message += '📸 *Please forward screenshot of payment to complete your booking*\n';
-										message += '*To complete your booking.*\n\n';
-										message += ' Merry Christmas and thank you for choosing Sugarlicious Cookies! 🎄';
+					message += '📸 *Please forward screenshot of payment to complete your booking*\n\n';
+					message += ' Merry Christmas and thank you for choosing Sugarlicious Cookies! 🎄';
 					
 					return encodeURIComponent(message);
 				};
@@ -713,7 +709,7 @@
 						const positionOptions = addBtn.getAttribute('data-position-options');
 						if (positionOptions) {
 							const options = positionOptions.split(',');
-							openPositionPicker(name, (selectedPosition) => {
+							openPositionPicker((selectedPosition) => {
 								const normalizedPosition = options.find(option => option.toLowerCase() === selectedPosition.toLowerCase());
 								if (normalizedPosition) addToCart(`${name} (${normalizedPosition})`, price, displayPrice);
 							});
