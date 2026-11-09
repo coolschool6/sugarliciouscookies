@@ -176,8 +176,8 @@
 			<div class="position-overlay" data-position-close></div>
 			<div class="position-content">
 				<button class="position-close" type="button" aria-label="Close position selection" data-position-close>×</button>
-				<h2 id="positionTitle">Choose a position</h2>
-				<p id="positionPrompt">Where should your Christmas Rectangle Box go?</p>
+				<h2 id="positionTitle">Which Christmas box?</h2>
+				<p id="positionPrompt">Which Christmas box?</p>
 				<div class="position-options">
 					<button type="button" data-position="Top">Top</button>
 					<button type="button" data-position="Middle">Middle</button>
@@ -650,7 +650,7 @@
 				};
 
 				const openPositionPicker = (name, callback) => {
-					positionPrompt.textContent = `Where should your ${name} go?`;
+					positionPrompt.textContent = 'Which Christmas box?';
 					positionSelectionCallback = callback;
 					positionModal.removeAttribute('aria-hidden');
 					document.body.classList.add('no-scroll');
