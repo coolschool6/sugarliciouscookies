@@ -519,9 +519,6 @@
 				const positionModal = document.getElementById('positionModal');
 				let positionSelectionCallback = null;
 				
-				// WhatsApp number (extracted from existing link)
-				const whatsappLink = 'https://wa.me/message/XOR7VGU5N2CEO1';
-				
 				const saveCart = () => {
 					localStorage.setItem('sugarliciousCart', JSON.stringify(cart));
 					updateCartUI();
@@ -694,8 +691,9 @@
 					const message = generateWhatsAppMessage();
 					// Send directly to Sugarlicious Cookies WhatsApp with pre-filled order message
 					const phoneNumber = '18683354131'; // Trinidad & Tobago: +1868-335-4131
-					const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
-					window.open(whatsappUrl, '_blank');
+					const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+					const orderWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+					if (!orderWindow) window.location.assign(whatsappUrl);
 				};
 				
 				// Event Listeners
