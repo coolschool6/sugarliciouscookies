@@ -185,6 +185,29 @@
 			</div>
 		</div>
 
+		<div class="pickup-date-modal" id="pickupDateModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pickupDateTitle">
+			<div class="pickup-date-overlay" data-pickup-date-close></div>
+			<div class="pickup-date-content">
+				<button class="pickup-date-close" type="button" aria-label="Close pickup date selection" data-pickup-date-close>×</button>
+				<div class="pickup-date-icon" aria-hidden="true">🎄</div>
+				<h2 id="pickupDateTitle">Choose your pickup date</h2>
+				<p>Pick a day for your Christmas cookie order. Pickup is available Monday through Saturday.</p>
+				<div class="pickup-calendar" aria-label="Pickup date calendar">
+					<div class="pickup-calendar-header">
+						<button class="pickup-calendar-nav" id="pickupPreviousMonth" type="button" aria-label="Previous month">‹</button>
+						<h3 id="pickupMonthLabel"></h3>
+						<button class="pickup-calendar-nav" id="pickupNextMonth" type="button" aria-label="Next month">›</button>
+					</div>
+					<div class="pickup-weekdays" aria-hidden="true">
+						<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+					</div>
+					<div class="pickup-date-grid" id="pickupDateGrid" role="grid"></div>
+				</div>
+				<p class="pickup-date-error" id="pickupDateError" role="alert" hidden>Please choose a date from Monday to Saturday.</p>
+				<button class="pickup-date-confirm" id="pickupDateConfirm" type="button">Continue to WhatsApp 🎁</button>
+			</div>
+		</div>
+
 		<script>
 			// Floating Christmas Symbols Background
 			const createFloatingSymbols = () => {
@@ -517,7 +540,17 @@
 				const clearCartBtn = document.getElementById('clearCartBtn');
 				const whatsappOrderBtn = document.getElementById('whatsappOrderBtn');
 				const positionModal = document.getElementById('positionModal');
+				const pickupDateModal = document.getElementById('pickupDateModal');
+				const pickupDateGrid = document.getElementById('pickupDateGrid');
+				const pickupMonthLabel = document.getElementById('pickupMonthLabel');
+				const pickupPreviousMonth = document.getElementById('pickupPreviousMonth');
+				const pickupNextMonth = document.getElementById('pickupNextMonth');
+				const pickupDateError = document.getElementById('pickupDateError');
+				const pickupDateConfirm = document.getElementById('pickupDateConfirm');
 				let positionSelectionCallback = null;
+				let pickupCalendarMonth = new Date();
+				let selectedPickupDate = '';
+				let minimumPickupDate = '';
 				
 				const saveCart = () => {
 					localStorage.setItem('sugarliciousCart', JSON.stringify(cart));
@@ -651,7 +684,76 @@
 					document.body.classList.add('no-scroll');
 				};
 				
-				const generateWhatsAppMessage = () => {
+				const closePickupDatePicker = () => {
+					pickupDateModal.setAttribute('aria-hidden', 'true');
+					pickupDateError.hidden = true;
+					document.body.classList.remove('no-scroll');
+				};
+
+				const isSunday = (dateValue) => {
+					const [year, month, day] = dateValue.split('-').map(Number);
+					return new Date(Date.UTC(year, month - 1, day)).getUTCDay() === 0;
+				};
+
+				const formatPickupDate = (dateValue) => {
+					const [year, month, day] = dateValue.split('-').map(Number);
+					return new Intl.DateTimeFormat('en-US', {
+						weekday: 'long',
+						month: 'long',
+						day: 'numeric',
+						year: 'numeric'
+					}).format(new Date(year, month - 1, day));
+				};
+
+				const toDateValue = (date) => [
+					date.getFullYear(),
+					String(date.getMonth() + 1).padStart(2, '0'),
+					String(date.getDate()).padStart(2, '0')
+				].join('-');
+
+				const renderPickupCalendar = () => {
+					const year = pickupCalendarMonth.getFullYear();
+					const month = pickupCalendarMonth.getMonth();
+					const monthStart = new Date(year, month, 1);
+					const daysInMonth = new Date(year, month + 1, 0).getDate();
+					const firstVisibleDay = monthStart.getDay() === 0 ? 1 : monthStart.getDay();
+					const leadingBlanks = firstVisibleDay - 1;
+					const monthIsMinimum = year === Number(minimumPickupDate.slice(0, 4))
+						&& month === Number(minimumPickupDate.slice(5, 7)) - 1;
+
+					pickupMonthLabel.textContent = new Intl.DateTimeFormat('en-US', {
+						month: 'long',
+						year: 'numeric'
+					}).format(monthStart);
+					pickupPreviousMonth.disabled = monthIsMinimum;
+					pickupDateGrid.innerHTML = '';
+
+					for (let index = 0; index < leadingBlanks; index += 1) {
+						const blank = document.createElement('span');
+						blank.className = 'pickup-date-blank';
+						blank.setAttribute('aria-hidden', 'true');
+						pickupDateGrid.appendChild(blank);
+					}
+
+					for (let day = 1; day <= daysInMonth; day += 1) {
+						const date = new Date(year, month, day);
+						if (date.getDay() === 0) continue;
+
+						const dateValue = toDateValue(date);
+						const dateButton = document.createElement('button');
+						dateButton.type = 'button';
+						dateButton.className = 'pickup-date-option';
+						dateButton.dataset.pickupDate = dateValue;
+						dateButton.textContent = day;
+						dateButton.setAttribute('aria-label', formatPickupDate(dateValue));
+						if (dateValue < minimumPickupDate) dateButton.disabled = true;
+						if (dateValue === selectedPickupDate) dateButton.classList.add('selected');
+						if (dateValue === toDateValue(new Date())) dateButton.classList.add('today');
+						pickupDateGrid.appendChild(dateButton);
+					}
+				};
+
+				const generateWhatsAppMessage = (pickupDate) => {
 					if (cart.length === 0) return '';
 					
 					const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -675,6 +777,7 @@
 					message += '━━━━━━━━━━━━━━━━━━━━━━\n';
 					message += `📦 Total Items: ${totalItems}\n`;
 					message += `💰 TOTAL COST: $${totalCost.toFixed(2)}\n`;
+					message += `📅 PICKUP DATE: ${formatPickupDate(pickupDate)}\n`;
 					message += '━━━━━━━━━━━━━━━━━━━━━━\n\n';
 					message += '📸 Please forward screenshot of payment to complete your booking\n\n';
 					message += ' Merry Christmas and thank you for choosing Sugarlicious Cookies! 🎄';
@@ -682,18 +785,38 @@
 					return encodeURIComponent(message);
 				};
 				
+				const openPickupDatePicker = () => {
+					const today = new Date();
+					minimumPickupDate = toDateValue(today);
+					pickupCalendarMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+					selectedPickupDate = '';
+					renderPickupCalendar();
+					pickupDateError.hidden = true;
+					pickupDateModal.removeAttribute('aria-hidden');
+					document.body.classList.add('no-scroll');
+				};
+
 				const sendWhatsAppOrder = () => {
 					if (cart.length === 0) {
 						alert('Your cart is empty! Please add some items first.');
 						return;
 					}
-					
-					const message = generateWhatsAppMessage();
+					openPickupDatePicker();
+				};
+
+				const confirmPickupDate = () => {
+					if (!selectedPickupDate || isSunday(selectedPickupDate)) {
+						pickupDateError.hidden = false;
+						return;
+					}
+
+					const message = generateWhatsAppMessage(selectedPickupDate);
 					// Send directly to Sugarlicious Cookies WhatsApp with pre-filled order message
 					const phoneNumber = '18683354131'; // Trinidad & Tobago: +1868-335-4131
 					const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 					const orderWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 					if (!orderWindow) window.location.assign(whatsappUrl);
+					closePickupDatePicker();
 				};
 				
 				// Event Listeners
@@ -754,6 +877,19 @@
 						closeCart();
 						return;
 					}
+
+					if (e.target.closest('[data-pickup-date-close]')) {
+						closePickupDatePicker();
+						return;
+					}
+
+					const dateOption = e.target.closest('[data-pickup-date]');
+					if (dateOption) {
+						selectedPickupDate = dateOption.dataset.pickupDate;
+						pickupDateError.hidden = true;
+						renderPickupCalendar();
+						return;
+					}
 				});
 				
 				// Floating cart button
@@ -768,9 +904,25 @@
 				
 				// WhatsApp order
 				whatsappOrderBtn.addEventListener('click', sendWhatsAppOrder);
+				document.querySelector('.pickup-date-close').addEventListener('click', closePickupDatePicker);
+				pickupDateConfirm.addEventListener('click', confirmPickupDate);
+				pickupPreviousMonth.addEventListener('click', () => {
+					if (!pickupPreviousMonth.disabled) {
+						pickupCalendarMonth.setMonth(pickupCalendarMonth.getMonth() - 1);
+						renderPickupCalendar();
+					}
+				});
+				pickupNextMonth.addEventListener('click', () => {
+					pickupCalendarMonth.setMonth(pickupCalendarMonth.getMonth() + 1);
+					renderPickupCalendar();
+				});
 				
 				// Escape key to close cart
 				document.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape' && pickupDateModal.getAttribute('aria-hidden') !== 'true') {
+						closePickupDatePicker();
+						return;
+					}
 					if (e.key === 'Escape' && cartModal.getAttribute('aria-hidden') !== 'true') {
 						closeCart();
 					}
