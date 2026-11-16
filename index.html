@@ -190,20 +190,11 @@
 			<div class="order-date-content">
 				<button class="order-date-close" type="button" aria-label="Close order date selection" data-order-date-close>×</button>
 				<div class="order-date-icon" aria-hidden="true">🎄</div>
-				<h2 id="orderDateTitle">Choose your order date</h2>
-				<p>Pick a day for your Christmas cookie order. Orders are available Monday through Saturday.</p>
-				<div class="order-calendar" aria-label="Order date calendar">
-					<div class="order-calendar-header">
-						<button class="order-calendar-nav" id="orderPreviousMonth" type="button" aria-label="Previous month">‹</button>
-						<h3 id="orderMonthLabel"></h3>
-						<button class="order-calendar-nav" id="orderNextMonth" type="button" aria-label="Next month">›</button>
-					</div>
-					<div class="order-weekdays" aria-hidden="true">
-						<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
-					</div>
-					<div class="order-date-grid" id="orderDateGrid" role="grid"></div>
-				</div>
-				<p class="order-date-error" id="orderDateError" role="alert" hidden>Please choose a date from Monday to Saturday.</p>
+				<h2 id="orderDateTitle">Date for order</h2>
+				<p>Pick a day for your Christmas cookie order.</p>
+				<label class="order-date-label" for="orderDateInput">Date for order</label>
+				<input class="order-date-input" id="orderDateInput" type="text" placeholder="e.g. December 20, 2026" autocomplete="off" />
+				<p class="order-date-error" id="orderDateError" role="alert" hidden>Please enter a date.</p>
 				<button class="order-date-confirm" id="orderDateConfirm" type="button">Continue to WhatsApp 🎁</button>
 			</div>
 		</div>
@@ -541,16 +532,10 @@
 				const whatsappOrderBtn = document.getElementById('whatsappOrderBtn');
 				const positionModal = document.getElementById('positionModal');
 				const orderDateModal = document.getElementById('orderDateModal');
-				const orderDateGrid = document.getElementById('orderDateGrid');
-				const orderMonthLabel = document.getElementById('orderMonthLabel');
-				const orderPreviousMonth = document.getElementById('orderPreviousMonth');
-				const orderNextMonth = document.getElementById('orderNextMonth');
+				const orderDateInput = document.getElementById('orderDateInput');
 				const orderDateError = document.getElementById('orderDateError');
 				const orderDateConfirm = document.getElementById('orderDateConfirm');
 				let positionSelectionCallback = null;
-				let orderCalendarMonth = new Date();
-				let selectedOrderDate = '';
-				let minimumOrderDate = '';
 				
 				const saveCart = () => {
 					localStorage.setItem('sugarliciousCart', JSON.stringify(cart));
@@ -690,67 +675,8 @@
 					document.body.classList.remove('no-scroll');
 				};
 
-				const isSunday = (dateValue) => {
-					const [year, month, day] = dateValue.split('-').map(Number);
-					return new Date(Date.UTC(year, month - 1, day)).getUTCDay() === 0;
-				};
-
 				const formatOrderDate = (dateValue) => {
-					const [year, month, day] = dateValue.split('-').map(Number);
-					return new Intl.DateTimeFormat('en-US', {
-						weekday: 'long',
-						month: 'long',
-						day: 'numeric',
-						year: 'numeric'
-					}).format(new Date(year, month - 1, day));
-				};
-
-				const toDateValue = (date) => [
-					date.getFullYear(),
-					String(date.getMonth() + 1).padStart(2, '0'),
-					String(date.getDate()).padStart(2, '0')
-				].join('-');
-
-				const renderOrderCalendar = () => {
-					const year = orderCalendarMonth.getFullYear();
-					const month = orderCalendarMonth.getMonth();
-					const monthStart = new Date(year, month, 1);
-					const daysInMonth = new Date(year, month + 1, 0).getDate();
-					const firstVisibleDay = monthStart.getDay() === 0 ? 1 : monthStart.getDay();
-					const leadingBlanks = firstVisibleDay - 1;
-					const monthIsMinimum = year === Number(minimumOrderDate.slice(0, 4))
-						&& month === Number(minimumOrderDate.slice(5, 7)) - 1;
-
-					orderMonthLabel.textContent = new Intl.DateTimeFormat('en-US', {
-						month: 'long',
-						year: 'numeric'
-					}).format(monthStart);
-					orderPreviousMonth.disabled = monthIsMinimum;
-					orderDateGrid.innerHTML = '';
-
-					for (let index = 0; index < leadingBlanks; index += 1) {
-						const blank = document.createElement('span');
-						blank.className = 'order-date-blank';
-						blank.setAttribute('aria-hidden', 'true');
-						orderDateGrid.appendChild(blank);
-					}
-
-					for (let day = 1; day <= daysInMonth; day += 1) {
-						const date = new Date(year, month, day);
-						if (date.getDay() === 0) continue;
-
-						const dateValue = toDateValue(date);
-						const dateButton = document.createElement('button');
-						dateButton.type = 'button';
-						dateButton.className = 'order-date-option';
-						dateButton.dataset.orderDate = dateValue;
-						dateButton.textContent = day;
-						dateButton.setAttribute('aria-label', formatOrderDate(dateValue));
-						if (dateValue < minimumOrderDate) dateButton.disabled = true;
-						if (dateValue === selectedOrderDate) dateButton.classList.add('selected');
-						if (dateValue === toDateValue(new Date())) dateButton.classList.add('today');
-						orderDateGrid.appendChild(dateButton);
-					}
+					return dateValue;
 				};
 
 				const generateWhatsAppMessage = (orderDate) => {
@@ -786,14 +712,11 @@
 				};
 				
 				const openOrderDatePicker = () => {
-					const today = new Date();
-					minimumOrderDate = toDateValue(today);
-					orderCalendarMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-					selectedOrderDate = '';
-					renderOrderCalendar();
+					orderDateInput.value = '';
 					orderDateError.hidden = true;
 					orderDateModal.removeAttribute('aria-hidden');
 					document.body.classList.add('no-scroll');
+					orderDateInput.focus();
 				};
 
 				const sendWhatsAppOrder = () => {
@@ -805,12 +728,13 @@
 				};
 
 				const confirmOrderDate = () => {
-					if (!selectedOrderDate || isSunday(selectedOrderDate)) {
+					const orderDateValue = orderDateInput.value.trim();
+					if (!orderDateValue) {
 						orderDateError.hidden = false;
 						return;
 					}
 
-					const message = generateWhatsAppMessage(selectedOrderDate);
+					const message = generateWhatsAppMessage(orderDateValue);
 					// Send directly to Sugarlicious Cookies WhatsApp with pre-filled order message
 					const phoneNumber = '18683354131'; // Trinidad & Tobago: +1868-335-4131
 					const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
@@ -883,13 +807,6 @@
 						return;
 					}
 
-					const dateOption = e.target.closest('[data-order-date]');
-					if (dateOption) {
-						selectedOrderDate = dateOption.dataset.orderDate;
-						orderDateError.hidden = true;
-						renderOrderCalendar();
-						return;
-					}
 				});
 				
 				// Floating cart button
@@ -906,15 +823,8 @@
 				whatsappOrderBtn.addEventListener('click', sendWhatsAppOrder);
 				document.querySelector('.order-date-close').addEventListener('click', closeOrderDatePicker);
 				orderDateConfirm.addEventListener('click', confirmOrderDate);
-				orderPreviousMonth.addEventListener('click', () => {
-					if (!orderPreviousMonth.disabled) {
-						orderCalendarMonth.setMonth(orderCalendarMonth.getMonth() - 1);
-						renderOrderCalendar();
-					}
-				});
-				orderNextMonth.addEventListener('click', () => {
-					orderCalendarMonth.setMonth(orderCalendarMonth.getMonth() + 1);
-					renderOrderCalendar();
+				orderDateInput.addEventListener('input', () => {
+					orderDateError.hidden = true;
 				});
 				
 				// Escape key to close cart
