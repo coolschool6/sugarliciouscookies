@@ -389,7 +389,7 @@ body{
 .product-info-stacked .product-note{margin-left:0}
 .product-name{font-size:1.1rem;line-height:1.3;font-weight:600;color:var(--text-900);margin:0;font-family:Helvetica, Arial, sans-serif}
 .product-price{font-size:1.35rem;color:#8c2b5a;font-weight:800;letter-spacing:-0.02em}
-.product-note{font-size:.85rem;color:var(--text-500);margin-left:auto;font-weight:400;opacity:0.85}
+.product-note{font-size:1.1rem;line-height:1.3;font-weight:600;color:var(--text-900);margin-left:0;font-family:Helvetica, Arial, sans-serif}
 
 /* Seasonal themed placeholders */
 .ph{position:relative;overflow:hidden;min-height:240px;display:flex;align-items:center;justify-content:center}
