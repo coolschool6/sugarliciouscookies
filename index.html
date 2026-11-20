@@ -466,7 +466,7 @@
 				for (let number = 6; number <= 19; number++) {
 					const product = catalog[number];
 					const name = product.name;
-					const image = `images/No.${number}.png`;
+					const image = number === 18 ? 'images/No.18.jpeg' : `images/No.${number}.png`;
 					const card = document.createElement('article');
 					card.className = 'product-card';
 					card.innerHTML = `
