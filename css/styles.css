@@ -462,53 +462,8 @@ body{
 .position-options button{padding:12px 8px;border:0;border-radius:12px;background:linear-gradient(135deg,#a51f2b,#d64a45);color:#fff;font-size:1rem;font-weight:700;cursor:pointer}
 .position-options button:hover{transform:translateY(-2px);box-shadow:0 5px 12px rgba(165,31,43,.25)}
 
-/* Order date picker */
-.order-date-modal[aria-hidden="true"]{display:none}
-.order-date-modal{position:fixed;inset:0;z-index:10003;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .2s ease}
-.order-date-overlay{position:absolute;inset:0;background:rgba(23,22,28,.72)}
-.order-date-content{position:relative;z-index:1;width:min(700px,100%);max-height:92vh;overflow:auto;padding:34px 30px 30px;background:linear-gradient(180deg,#fffaf0 0%,#fff4df 100%);border:3px solid #c62838;border-radius:28px;box-shadow:0 18px 50px rgba(98,24,31,.4);text-align:center;animation:zoomIn .2s ease}
-.order-date-content:before,.order-date-content:after{position:absolute;top:14px;pointer-events:none;font-size:1.8rem;content:'✦';color:#c88a27}
-.order-date-content:before{left:28px}
-.order-date-content:after{right:28px}
-.order-date-content h2{margin:0;color:#9f1722;font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.55rem,4vw,2.35rem);font-weight:700}
-.order-date-content p{margin:12px 0 22px;color:#344b3b;font-family:Georgia,'Times New Roman',serif;font-size:1.08rem;line-height:1.45}
-.order-date-close{position:absolute;z-index:2;top:12px;right:12px;width:40px;height:40px;border:1px solid #ded5c7;border-radius:50%;background:#fff;font-size:24px;line-height:1;cursor:pointer;touch-action:manipulation}
-.booking-calendar{overflow:hidden;border:2px solid #f0dfbd;border-radius:24px;background:rgba(255,255,255,.92);box-shadow:0 10px 28px rgba(110,76,31,.12)}
-.booking-calendar-header{display:grid;grid-template-columns:54px 1fr 54px;align-items:center;min-height:78px;margin:8px 8px 6px;padding:8px 10px;border:3px solid #d7a33c;border-radius:38px;background:linear-gradient(135deg,#174d3a,#24614a);color:#fff;font-family:Georgia,'Times New Roman',serif;box-shadow:0 4px 10px rgba(44,69,39,.18)}
-.calendar-month{font-size:clamp(1.35rem,4vw,2rem);font-weight:700;text-shadow:0 2px 2px rgba(0,0,0,.25)}
-.calendar-arrow{width:46px;height:46px;border:2px solid #d9ad4d;border-radius:50%;background:#174938;color:#fff;font-family:Georgia,'Times New Roman',serif;font-size:2rem;line-height:36px;opacity:.45}
-.calendar-weekdays,.calendar-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
-.calendar-weekdays{margin:0 16px;border-bottom:2px solid #c78a29;color:#315c3a;font-family:Georgia,'Times New Roman',serif;font-size:1.05rem;font-weight:700}
-.calendar-weekdays span{padding:12px 2px 8px}
-.calendar-grid{gap:8px;padding:12px 16px 18px}
-.calendar-day{display:grid;place-items:center;min-width:0;height:58px;border:0;border-radius:14px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.15rem,4vw,1.65rem);font-weight:700}
-.calendar-unavailable{background:linear-gradient(145deg,#62615f,#3f403e);color:#fff;box-shadow:inset 0 1px 2px rgba(255,255,255,.12),0 3px 5px rgba(50,50,50,.12);cursor:not-allowed}
-.calendar-available{background:linear-gradient(145deg,#fffefb,#f1efe8);color:#25733a;box-shadow:0 3px 7px rgba(67,58,43,.14);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s ease}
-.calendar-available:hover,.calendar-available:focus-visible{transform:translateY(-2px);box-shadow:0 5px 12px rgba(67,58,43,.22);outline:none}
-.calendar-available.calendar-selected{background:linear-gradient(145deg,#dff4dd,#fff);color:#174d3a;box-shadow:0 0 0 3px #c79a38,0 5px 12px rgba(67,58,43,.18)}
-.calendar-empty{height:58px}
-.order-date-confirm{width:calc(100% - 24px);margin:18px 12px 0;padding:16px;border:2px solid #e1ae42;border-radius:28px;background:linear-gradient(135deg,#b71928,#d74643);color:#fffaf0;font-family:Georgia,'Times New Roman',serif;font-size:1.2rem;font-weight:700;cursor:pointer;box-shadow:0 5px 12px rgba(132,17,25,.25)}
-.order-date-confirm:hover{transform:translateY(-2px);background:linear-gradient(135deg,#c51f2d,#e0524c);box-shadow:0 7px 15px rgba(132,17,25,.32)}
-.order-date-error{margin:12px 0 0!important;color:#a51f2b!important;font-family:Georgia,'Times New Roman',serif;font-size:.95rem!important}
-
 /* Mobile lightbox - full screen */
 @media (max-width:768px){
-  .order-date-content{width:calc(100vw - 24px);max-height:calc(100dvh - 24px);padding:30px 14px 22px;border-radius:22px}
-  .order-date-content:before,.order-date-content:after{top:12px;font-size:1.3rem}
-  .order-date-content:before{left:18px}
-  .order-date-content:after{right:18px}
-  .order-date-content h2{padding:0 28px;font-size:1.35rem}
-  .order-date-content p{margin:8px 0 12px;font-size:.9rem}
-  .booking-calendar{border-radius:18px}
-  .booking-calendar-header{grid-template-columns:42px 1fr 42px;min-height:62px;margin:6px 6px 4px;padding:6px;border-width:2px;border-radius:30px}
-  .calendar-arrow{width:36px;height:36px;font-size:1.55rem;line-height:28px}
-  .calendar-month{font-size:1.25rem}
-  .calendar-weekdays{margin:0 8px;font-size:.78rem}
-  .calendar-weekdays span{padding:8px 1px 6px}
-  .calendar-grid{gap:5px;padding:8px 8px 12px}
-  .calendar-day,.calendar-empty{height:48px;border-radius:10px}
-  .calendar-day{font-size:1.1rem}
-  .order-date-confirm{width:100%;margin:20px 0 0;font-size:1.05rem}
   .lightbox{padding:0}
   .lightbox-content{
     width:100vw;

@@ -185,28 +185,6 @@
 			</div>
 		</div>
 
-		<div class="order-date-modal" id="orderDateModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="orderDateTitle">
-			<div class="order-date-overlay" data-order-date-close></div>
-			<div class="order-date-content">
-				<button class="order-date-close" type="button" aria-label="Close order date selection" data-order-date-close>×</button>
-				<h2 id="orderDateTitle">December - Available Dates</h2>
-				<p>Pick a day for your Christmas cookie order.<br />Pickup is available Monday through Saturday.</p>
-				<div class="booking-calendar" aria-label="December 2026 available pickup dates">
-					<div class="booking-calendar-header">
-						<button class="calendar-arrow" type="button" aria-label="Previous month" disabled>‹</button>
-						<div class="calendar-month">December 2026</div>
-						<button class="calendar-arrow" type="button" aria-label="Next month" disabled>›</button>
-					</div>
-					<div class="calendar-weekdays" aria-hidden="true">
-						<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
-					</div>
-					<div class="calendar-grid" id="calendarGrid"></div>
-				</div>
-				<p class="order-date-error" id="orderDateError" role="alert" hidden>Please enter a date.</p>
-				<button class="order-date-confirm" id="orderDateConfirm" type="button">Continue to WhatsApp 🎁</button>
-			</div>
-		</div>
-
 		<script>
 			// Floating Christmas Symbols Background
 			const createFloatingSymbols = () => {
@@ -540,52 +518,7 @@
 				const clearCartBtn = document.getElementById('clearCartBtn');
 				const whatsappOrderBtn = document.getElementById('whatsappOrderBtn');
 				const positionModal = document.getElementById('positionModal');
-				const orderDateModal = document.getElementById('orderDateModal');
-				const calendarGrid = document.getElementById('calendarGrid');
-				const orderDateError = document.getElementById('orderDateError');
-				const orderDateConfirm = document.getElementById('orderDateConfirm');
 				let positionSelectionCallback = null;
-				let selectedOrderDate = '';
-				const availableOrderDates = new Set([3, 4, 10, 11, 15, 16, 18]);
-				
-				const buildDecemberCalendar = () => {
-					const cells = [];
-					const firstMonday = new Date(2026, 10, 30);
-					
-					for (let day = 1; day <= 31; day++) {
-						const dayOfWeek = new Date(2026, 11, day).getDay();
-						if (dayOfWeek === 0) continue;
-						const date = new Date(2026, 11, day);
-						const elapsedDays = Math.round((date - firstMonday) / 86400000);
-						const targetIndex = (Math.floor(elapsedDays / 7) * 6) + ((dayOfWeek + 6) % 7);
-						
-						while (cells.length < targetIndex) {
-							cells.push('<span class="calendar-empty" aria-hidden="true"></span>');
-						}
-						
-						if (availableOrderDates.has(day)) {
-							cells.push(`<button type="button" class="calendar-day calendar-available" data-date="${day}" aria-label="December ${day}, 2026 available">${day}</button>`);
-						} else {
-							cells.push(`<span class="calendar-day calendar-unavailable" aria-label="December ${day}, 2026 unavailable">${day}</span>`);
-						}
-					}
-					
-					calendarGrid.innerHTML = cells.join('');
-					calendarGrid.querySelectorAll('.calendar-available').forEach(button => {
-						button.addEventListener('click', () => {
-							calendarGrid.querySelectorAll('.calendar-available').forEach(day => {
-								day.classList.remove('calendar-selected');
-								day.setAttribute('aria-pressed', 'false');
-							});
-							button.classList.add('calendar-selected');
-							button.setAttribute('aria-pressed', 'true');
-							selectedOrderDate = `December ${button.dataset.date}, 2026`;
-							orderDateError.hidden = true;
-						});
-					});
-				};
-				
-				buildDecemberCalendar();
 				
 				const saveCart = () => {
 					localStorage.setItem('sugarliciousCart', JSON.stringify(cart));
@@ -719,17 +652,7 @@
 					document.body.classList.add('no-scroll');
 				};
 				
-				const closeOrderDatePicker = () => {
-					orderDateModal.setAttribute('aria-hidden', 'true');
-					orderDateError.hidden = true;
-					document.body.classList.remove('no-scroll');
-				};
-
-				const formatOrderDate = (dateValue) => {
-					return dateValue;
-				};
-
-				const generateWhatsAppMessage = (orderDate) => {
+				const generateWhatsAppMessage = () => {
 					if (cart.length === 0) return '';
 					
 					const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -753,7 +676,6 @@
 					message += '━━━━━━━━━━━━━━━━━━━━━━\n';
 					message += `📦 Total Items: ${totalItems}\n`;
 					message += `💰 TOTAL COST: $${totalCost.toFixed(2)}\n`;
-					message += `📅 ORDER DATE: ${formatOrderDate(orderDate)}\n`;
 					message += '━━━━━━━━━━━━━━━━━━━━━━\n\n';
 					message += '📸 Please forward screenshot of payment to complete your booking\n\n';
 					message += ' Merry Christmas and thank you for choosing Sugarlicious Cookies! 🎄';
@@ -761,39 +683,17 @@
 					return encodeURIComponent(message);
 				};
 				
-				const openOrderDatePicker = () => {
-					selectedOrderDate = '';
-					calendarGrid.querySelectorAll('.calendar-available').forEach(day => {
-						day.classList.remove('calendar-selected');
-						day.setAttribute('aria-pressed', 'false');
-					});
-					orderDateError.hidden = true;
-					orderDateModal.removeAttribute('aria-hidden');
-					document.body.classList.add('no-scroll');
-					calendarGrid.querySelector('.calendar-available')?.focus();
-				};
-
 				const sendWhatsAppOrder = () => {
 					if (cart.length === 0) {
 						alert('Your cart is empty! Please add some items first.');
 						return;
 					}
-					openOrderDatePicker();
-				};
-
-				const confirmOrderDate = () => {
-					if (!selectedOrderDate) {
-						orderDateError.hidden = false;
-						return;
-					}
-
-					const message = generateWhatsAppMessage(selectedOrderDate);
+					const message = generateWhatsAppMessage();
 					// Send directly to Sugarlicious Cookies WhatsApp with pre-filled order message
 					const phoneNumber = '18683354131'; // Trinidad & Tobago: +1868-335-4131
 					const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 					const orderWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 					if (!orderWindow) window.location.assign(whatsappUrl);
-					closeOrderDatePicker();
 				};
 				
 				// Event Listeners
@@ -855,11 +755,6 @@
 						return;
 					}
 
-					if (e.target.closest('[data-order-date-close]')) {
-						closeOrderDatePicker();
-						return;
-					}
-
 				});
 				
 				// Floating cart button
@@ -874,15 +769,9 @@
 				
 				// WhatsApp order
 				whatsappOrderBtn.addEventListener('click', sendWhatsAppOrder);
-				document.querySelector('.order-date-close').addEventListener('click', closeOrderDatePicker);
-				orderDateConfirm.addEventListener('click', confirmOrderDate);
 				
 				// Escape key to close cart
 				document.addEventListener('keydown', (e) => {
-					if (e.key === 'Escape' && orderDateModal.getAttribute('aria-hidden') !== 'true') {
-						closeOrderDatePicker();
-						return;
-					}
 					if (e.key === 'Escape' && cartModal.getAttribute('aria-hidden') !== 'true') {
 						closeCart();
 					}
